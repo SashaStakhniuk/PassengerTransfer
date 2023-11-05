@@ -727,6 +727,7 @@ nav.navbar.bootsnav .navbar-toggle i {
 
 .explore {
     padding: 50px 0;
+    margin-bottom: 50px;
     background: #f8fafb;
 }
 
@@ -892,7 +893,6 @@ nav.navbar.bootsnav .navbar-toggle i {
     padding: 0 10px;
     margin: 0 8px;
     border-left: 1px solid #dde0e4;
-    border-right: 1px solid #dde0e4;
 }
 
 .explore-person {
@@ -1152,6 +1152,7 @@ nav.navbar.bootsnav .navbar-toggle i {
     display: -ms-flexbox;
     display: flex;
     gap: 20px;
+    margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -1637,6 +1638,42 @@ nav.navbar.bootsnav .navbar-toggle i {
     text-transform: capitalize;
 }
 
+.footer-social-parent {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* 
+.footer-social-parent::before,
+.footer-social-parent::after {
+    position: absolute;
+    content: '';
+    border-top: 1px solid #a09e9c;
+    top: 50%;
+    width: 30%;
+}
+
+.footer-social-parent::before {
+    left: 0;
+}
+
+.footer-social-parent::after {
+    right: 0;
+} */
+
+.footer-social {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
 .footer-social .fa-phone:before {
     position: relative;
     top: 2px;
@@ -1647,7 +1684,6 @@ nav.navbar.bootsnav .navbar-toggle i {
     display: inline-block;
     color: #afb4bf;
     font-size: 14px;
-    margin-left: 15px;
     -webkit-transition: .3s;
     -moz-transition: .3s;
     -ms-transition: .3s;
@@ -1655,13 +1691,17 @@ nav.navbar.bootsnav .navbar-toggle i {
     transition: .3s;
 }
 
+.footer-social .fa {
+    font-size: 25px;
+}
+
 .footer-social a {
-    width: 35px;
-    height: 35px;
-    line-height: 35px;
+    width: 45px;
+    height: 45px;
+    line-height: 55px;
     background: #eef2f6;
     text-align: center;
-    border-radius: 50%;
+    border-radius: 20%;
 }
 
 .footer-social span {
@@ -2050,8 +2090,10 @@ instructions
 
 .form-box .data-box input[type="text"]:focus~label,
 .form-box .data-box input[type="tel"]:focus~label,
+.form-box .data-box input[type="date"]:focus~label,
 .form-box .data-box input[type="text"]:valid~label,
-.form-box .data-box input[type="tel"]:valid~label {
+.form-box .data-box input[type="tel"]:valid~label,
+.form-box .data-box input[type="date"]:valid~label {
     top: -9px;
     left: 25px;
     font-size: 12px;
@@ -2215,6 +2257,62 @@ instructions
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
+}
+
+.contacts-block .section-header {
+    margin-bottom: 0px;
+}
+
+.contacts-block .highlight:hover {
+    transition: all 0.5s ease;
+    color: var(--main-red);
+}
+
+.contacts-block .phone {
+    transition: all 0.5s ease;
+    font-size: 26px;
+    color: #a09e9c;
+}
+
+.managers-phones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.managers-phones-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.col-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.col-grid-2>div>p {
+    font-size: 22px;
+    text-align: center;
+}
+
+
+/* 
+.managers-phones-item:nth-child(odd) {
+    justify-content: start;
+}
+
+.managers-phones-item:nth-child(even) {
+    justify-content: end;
+} */
+
+.managers-phones p {
+    font-size: 20px;
 }
 
 .order-block {

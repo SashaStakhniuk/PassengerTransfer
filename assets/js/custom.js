@@ -123,69 +123,15 @@ function initDatas() {
     const setMinMaxDate = () => {
         const dateContainer = $('.form-box input[type = "date"]');
         const currentDate = new Date();
-        const currentDateString = parseDateToString(currentDate, "yyyy-MM-dd");
-        dateContainer.attr("min", currentDateString);
+        // const tomorrow = currentDate;
+        // tomorrow.setDate(currentDate.getDate() + 1);
+        const minDateString = currentDate.toISOString().split("T")[0]; //parseDateToString(currentDate, "yyyy-MM-dd");
+        dateContainer.attr("min", minDateString);
+        dateContainer.attr("value", minDateString);
 
         //dateContainer.attr("max", maxDate.toLocaleDateString('en'));
     };
     setMinMaxDate();
-}
-
-function formatDate(date) {
-    const tokens = outputDateFormat.match(/[a-zA-Z0-9]+/g);
-
-    if (!tokens) {
-        throw new Error('Invalid dateFormat.');
-    }
-
-    const uniqueTokens = [...new Set(tokens)];
-
-    let formatted = outputDateFormat;
-
-    uniqueTokens.forEach(token => {
-        let replacement = '';
-
-        switch (token) {
-            case 'yyyy':
-                replacement = date.getFullYear();
-                break;
-
-            case 'MM':
-                replacement = date.getMonth() + 1;
-                break;
-
-            case 'dd':
-                replacement = date.getDate();
-                break;
-
-            case 'HH':
-                replacement = date.getHours();
-                break;
-
-            case 'mm':
-                replacement = date.getMinutes();
-                break;
-
-            case 'ss':
-                replacement = date.getSeconds();
-                break;
-
-            case 'SSS':
-            case 'SS':
-                replacement = date.getMilliseconds();
-                break;
-
-            default:
-        }
-
-        formatted = formatted.replace(token, replacement);
-    });
-
-    if (formatted) {
-        return formatted;
-    }
-
-    throw new Error('Invalid date format');
 }
 
 function scrollTo(element) {

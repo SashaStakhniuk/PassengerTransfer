@@ -21,6 +21,7 @@
 https://microbus.com.ua/
 https://www.pereviznyk.com.ua/
 https://www.free-css.com/free-css-templates/page296/listrace
+https://globus.pl.ua/?gclid=Cj0KCQjw7JOpBhCfARIsAL3bobfaYv2-8VaNuDU2EEdzIFHcujx8ekCW7vFmb69bDoniVURPSF2nh3oaAk3cEALw_wcB
 https://developers.google.com/maps/documentation/javascript/place-autocomplete?hl=ru#javascript
 
 
@@ -48,8 +49,6 @@ https://developers.google.com/maps/documentation/javascript/place-autocomplete?h
 Бельгія
 
 виїзд кожного дня.
-
-
 
 
 
