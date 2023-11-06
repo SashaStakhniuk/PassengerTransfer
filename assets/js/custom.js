@@ -37,55 +37,6 @@ $(document).ready(function() {
     });
 
 
-    // 2. slick carousel
-
-    $(".testimonial-carousel").slick({
-        infinite: true,
-        centerMode: true,
-        autoplay: true,
-        slidesToShow: 5,
-        slidesToScroll: 3,
-        autoplaySpeed: 1500,
-        // the magic
-        responsive: [{
-
-                breakpoint: 1440,
-                settings: {
-                    slidesToShow: 3
-                }
-
-            },
-            {
-
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-
-                }
-
-            },
-            {
-
-                breakpoint: 991,
-                settings: {
-                    slidesToShow: 2,
-                    centerMode: false,
-                }
-
-            },
-            {
-
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1,
-                }
-
-            }
-        ]
-    });
-
-
-
     // 3. welcome animation support
 
     $(document).ready(function() {
@@ -117,6 +68,55 @@ $(document).ready(function() {
     initEventListeners();
     showStep(1);
     initFormValidation();
+
+
+
+
+    // $(".testimonial-carousel").slick({
+    //     infinite: true,
+    //     centerMode: true,
+    //     autoplay: true,
+    //     slidesToShow: 5,
+    //     slidesToScroll: 3,
+    //     autoplaySpeed: 1500,
+    //     // the magic
+    //     responsive: [{
+
+    //             breakpoint: 1440,
+    //             settings: {
+    //                 slidesToShow: 3
+    //             }
+
+    //         },
+    //         {
+
+    //             breakpoint: 1024,
+    //             settings: {
+    //                 slidesToShow: 2,
+
+    //             }
+
+    //         },
+    //         {
+
+    //             breakpoint: 991,
+    //             settings: {
+    //                 slidesToShow: 2,
+    //                 centerMode: false,
+    //             }
+
+    //         },
+    //         {
+
+    //             breakpoint: 767,
+    //             settings: {
+    //                 slidesToShow: 1,
+    //             }
+
+    //         }
+    //     ]
+    // });
+
 
 });
 
@@ -205,6 +205,43 @@ function initEventListeners() {
             const answer = $(this).next(".faq-list-item-answer");
             answer.slideToggle();
         });
+    });
+
+    const swiper = new Swiper('.reviews-swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+        slidesPerView: 1,
+        autoHeight: true,
+        simulateTouch: true,
+        spaceBetween: 40,
+        centeredSlides: true,
+        grabCursor: true,
+        autoplay: {
+            delay: 5000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true
+        },
+        // effect: "coverflow",
+        // coverflowEffect: {
+        //     depth: 100,
+        //     scale: 1,
+        //     rotate: 0,
+        //     stretch: 0,
+        //     slideShadows: false
+        // },
+        breakpoints: {
+            992: {
+                slidesPerView: 3
+            },
+        },
+        pagination: {
+            el: '.swiper-pagination',
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
     });
 }
 

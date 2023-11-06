@@ -586,14 +586,21 @@ font-family: 'Roboto', sans-serif;
         box-shadow: 0 5px 10px rgba(71, 71, 71, .4);
     }
     /*-------------------------------------
-        6. FAQ 
+        6. Routes
 --------------------------------------*/
     
-    .faq {
-        padding: 0 0;
+    .routes {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 58px 0 44px;
+    }
+    
+    #routes .section-header h2 {
+        color: var(--text-gray);
     }
     /*-------------------------------------
-        6. FAQ 
+        6. Routes
 --------------------------------------*/
     /*-------------------------------------
         7. Explore
@@ -835,6 +842,16 @@ font-family: 'Roboto', sans-serif;
     .reviews-content {
         margin-top: 36px;
     }
+    
+    .reviews .swiper-button-next:after,
+    .reviews .swiper-button-prev:after {
+        font-size: 30px;
+        color: var(--main-red);
+    }
+    
+    .reviews .swiper-pagination-bullet-active {
+        background: var(--main-red);
+    }
     /*single-testimonial-box */
     
     .single-testimonial-box {
@@ -919,7 +936,7 @@ font-family: 'Roboto', sans-serif;
     
     .slick-initialized .slick-slide {
         display: block;
-        padding: 40px 0;
+        padding: 0;
     }
     
     .slick-slide.slick-cloned {
@@ -994,6 +1011,10 @@ font-family: 'Roboto', sans-serif;
     /*-------------------------------------
         10. Services
 --------------------------------------*/
+    
+    #services {
+        padding: 0;
+    }
     
     .services__inner {
         -ms-flex-pack: justify;
@@ -1419,6 +1440,11 @@ font-family: 'Roboto', sans-serif;
     #faq .section-header {
         text-align: left;
         margin-bottom: 5px;
+    }
+    
+    .faq-list p {
+        font-size: 17px;
+        color: #454545;
     }
     
     .faq-list .faq-list-item:after {

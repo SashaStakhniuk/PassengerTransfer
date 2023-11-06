@@ -41,6 +41,8 @@
     <!-- bootsnav -->
     <link rel="stylesheet" href="assets/css/bootsnav.css">
 
+    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css">
+
     <!--style.css-->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -312,7 +314,7 @@
             <div class="explore-content">
                 <div class="flex-blocks-container">
                     <div class="block__item">
-            
+
                         <div class="block__item-narrow">
                             <div class="single-explore-item">
                                 <div class="single-explore-img">
@@ -344,13 +346,13 @@
                                                 Орієнтовна ціна
                                                 <span class="explore-price">170€-220€</span>
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="block__item">
-            
+
                         <div class="block__item-narrow">
                             <div class="single-explore-item">
                                 <div class="single-explore-img">
@@ -382,13 +384,13 @@
                                             Орієнтовна ціна
                                                 <span class="explore-price">90€-110€</span>
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="block__item">
-            
+
                         <div class="block__item-narrow">
                             <div class="single-explore-item">
                                 <div class="single-explore-img">
@@ -420,13 +422,13 @@
                                             Орієнтовна ціна
                                                 <span class="explore-price">200zł-300zł</span>
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="block__item">
-            
+
                         <div class="block__item-narrow">
                             <div class="single-explore-item">
                                 <div class="single-explore-img">
@@ -458,7 +460,7 @@
                                             Орієнтовна ціна
                                                 <span class="explore-price">80€-120€</span>
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -495,7 +497,7 @@
                                             Орієнтовна ціна
                                                 <span class="explore-price">160€-180€</span>
                                     </p>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -875,6 +877,18 @@
             </div>
         </div>
     </section>
+
+
+    <section class="routes" id="routes" style="background-image: url('./assets/images/routes/dark-map.jpg');">
+        <div class="container">
+            <div class="section-header">
+                <h2>Машрути</h2>
+            </div>
+            <img decoding="async" src="./assets/images/routes/routes-map.svg" alt="slide">
+        </div>
+    </section>
+
+
     <section class="booking" style="background-image: url('./img/empty-highway-dawn.jpg');">
         <div class="booking__container">
             <div class="booking__content">
@@ -886,7 +900,6 @@
                 </figure>
             </div>
     </section>
-
 
     <!-- <div id="fullscreenModal">
             <form id="make-order-form-modal" class="modal-content form-box dark-background" method="post" autocomplete="off">
@@ -962,6 +975,42 @@
             <ul id="faq-list" class="faq-list">
                 <li class="faq-list-item">
                     <span class="faq-list-item-question">
+                        <p>Процедура оформлення поїздки</p>
+                        <div class="faq-icon"></div>
+                    </span>
+                    <div class="faq-list-item-answer">
+                        <div class="instructions-container">
+                            <div class="step" data-step="1">
+                                <h2>Крок 1: Замовлення поїздки / Надання контактів для зв'язку</h2>
+                                <p>Клієнт робить замовлення поїздки або надає свої контактні дані для подальшого зв'язку. Інформація, яку надає клієнт: адреса відправлення, адреса призначення, дата та час поїздки, кількість місць, особливі вимоги або інша
+                                    необхідна інформація.</p>
+                            </div>
+
+                            <div class="step" data-step="2">
+                                <h2>Крок 2: Зв'язок з менеджером для уточнення деталей поїздки. Надання необхідної інформації</h2>
+                                <p>
+                                    Менеджер зв'язується з клієнтом для уточнення деталей поїздки. Можливі деталі для уточнення: точна адреса відправлення, точна адреса призначення, додаткові вимоги або послуги, які можуть знадобитися, кількість пасажирів тощо. Клієнт надає менеджеру необхідну
+                                    інформацію для оптимальної організації поїздки.
+                                </p>
+                            </div>
+
+                            <div class="step" data-step="3">
+                                <h2>Крок 3: Розрахунок вартості поїздки</h2>
+                                <p>На основі наданої інформації менеджер розраховує вартість поїздки і повідомляє клієнта. Клієнт може внести оплату або узгодити деталі оплати.</p>
+                            </div>
+
+                            <div class="step" data-step="4">
+                                <h2>Крок 4: Поїздка</h2>
+                                <p>
+                                    В зазначений часу транспорт забирає клієнта за визначеною адресою відправлення. Здійснюється поїздка до пункту призначення відповідно до узгодженої інформації. Після завершення поїздки клієнт може залишити відгук та оплатити послугу, якщо цього не було
+                                    зроблено раніше.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="faq-list-item">
+                    <span class="faq-list-item-question">
                         <p>Що забороняється ввозити до Польщі</p>
                         <div class="faq-icon"></div>
                     </span>
@@ -991,7 +1040,7 @@
                             <p>- Фрукти та овочі (за винятком картоплі), мед, макарони, харчові добавки, приправи, випічку, кондитерські вироби – норма перевезення цих продуктів становить до 2 кг на особу;</p>
                             <p>- Заморожену чи свіжу рибу (очищену від нутрощів), а також морепродукти – до 20 кг;</p>
                             <p>- Чай (до 100 г) та каву (до 500 г);</p>
-                            <p>- Пиво – до 6 л, вино – до 4 л, алкогольні напої міцністю вище 22% – до 1 л, алкогольні напої середньої міцності (вміст спирту менше 22%) – до 2 л;</p>
+                            <p>- Пиво – до 6 л, вино – до 4 л, алкогольні напої міцністю вище 22% – до 1 л, алкогольні напої середньої міцності (вміст спирту менше 22%)–до 2 л;</p>
                             <p>- Дві пачки цигарок або 50 г тютюну для куріння, 10 сигар або 10 мл рідини для електронних сигар;</p>
                             <br/>
                             <p>
@@ -1002,40 +1051,7 @@
                         </article>
                     </div>
                 </li>
-                <li class="faq-list-item">
-                    <span class="faq-list-item-question">
-                        <p>Процедура оформлення поїздки</p>
-                        <div class="faq-icon"></div>
-                    </span>
-                    <div class="faq-list-item-answer">
-                        <div class="instructions-container">
-                            <div class="step" data-step="1">
-                                <h2>Крок 1: Замовлення поїздки / Надання контактів для зв'язку</h2>
-                                <p>Клієнт робить замовлення поїздки або надає свої контактні дані для подальшого зв'язку. Інформація, яку надає клієнт: адреса відправлення, адреса призначення, дата та час поїздки, особливі вимоги або інша необхідна інформація.</p>
-                            </div>
 
-                            <div class="step" data-step="2">
-                                <h2>Крок 2: Зв'язок з менеджером для уточнення деталей поїздки. Надання необхідної інформації</h2>
-                                <p>
-                                    Менеджер зв'язується з клієнтом для уточнення деталей поїздки. Можливі деталі для уточнення: точна адреса відправлення, точна адреса призначення, додаткові вимоги або послуги, які можуть знадобитися, кількість пасажирів тощо. Клієнт надає менеджеру необхідну
-                                    інформацію для оптимальної організації поїздки.
-                                </p>
-                            </div>
-
-                            <div class="step" data-step="3">
-                                <h2>Крок 3: Розрахунок вартості поїздки</h2>
-                                <p>На основі наданої інформації менеджер розраховує вартість поїздки і повідомляє клієнта. Клієнт може внести оплату або узгодити деталі оплати.</p>
-                            </div>
-
-                            <div class="step" data-step="4">
-                                <h2>Крок 4: Поїздка</h2>
-                                <p>
-                                    <b> Заберемо за адресою відправлення, доставимо до пункту призначення:</b> По зазначеному часу транспорт забирає клієнта за адресою відправлення. Здійснюється поїздка до пункту призначення відповідно до узгодженої інформації.
-                                    По завершенні поїздки клієнт може залишити відгук та оплатити послугу, якщо цього не було зроблено раніше.</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
         </div>
         </div>
     </section>
@@ -1114,250 +1130,246 @@
         </div>
         <!--/.section-header-->
         <div class="reviews-content">
-            <div class="testimonial-carousel">
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Віктор</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+            <div class="reviews-swiper">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
                                 </div>
-                            </div>
-                            <!--/.testimonial-person-->
-                        </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Дякуємо за комфортну і легку поїздку додому. Сподобалось, що все організовано і швидко. Контакти Ваші зберегли і вже порекомендували своїм друзям! Обов'язково будемо звертатися до Вас при наступній поїздці за кордон.                                </p>
-                        </div>
-                        <!--/.testimonial-comment-->
-                    </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Олександр</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Віктор</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
                                 </div>
+                                <!--/.testimonial-person-->
                             </div>
-                            <!--/.testimonial-person-->
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Дякуємо за комфортну і легку поїздку додому. Сподобалось, що все організовано і швидко. Контакти Ваші зберегли і вже порекомендували своїм друзям! Обов'язково будемо звертатися до Вас при наступній поїздці за кордон. </p>
+                            </div>
+                            <!--/.testimonial-comment-->
                         </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Водії дуже круті. І на кордоні дуже допомогли і гроші нам зекономили. Дуже вам дякую що ви знайшли нам такий транспорт.                                </p>
-                        </div>
-                        <!--/.testimonial-comment-->
                     </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Ольга</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
                                 </div>
-                            </div>
-                            <!--/.testimonial-person-->
-                        </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Дуже дякуємо від усієї нашої компанії за Ваше перевезення!!! Все дуже добре, хороші хлопці, водії, машини. Дякуємо!!!                                </p>
-                        </div>
-                        <!--/.testimonial-comment-->
-                    </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Ірина</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Олександр</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
                                 </div>
+                                <!--/.testimonial-person-->
                             </div>
-                            <!--/.testimonial-person-->
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Водії дуже круті. І на кордоні дуже допомогли і гроші нам зекономили. Дуже вам дякую що ви знайшли нам такий транспорт. </p>
+                            </div>
+                            <!--/.testimonial-comment-->
                         </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Доброго дня, 10 вересня з вашими перевізниками Євгенієм і Едуардом виїхали з Фінляндії до України і 12 вересня на ранок вже були в Києві, дуже хороші водії, прислухалися до прохань пасажирів. Поїздка була хороша і комфортна, будемо всім їх рекомендувати!                                </p>
-                        </div>
-                        <!--/.testimonial-comment-->
                     </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Сергій</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
                                 </div>
-                            </div>
-                            <!--/.testimonial-person-->
-                        </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-Дякую Вам за пасажирські перевезення. Хороші у Вас водії.                                </p>
-                        </div>
-                        <!--/.testimonial-comment-->
-                    </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Анатолій</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Ольга</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
                                 </div>
+                                <!--/.testimonial-person-->
                             </div>
-                            <!--/.testimonial-person-->
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Дуже дякуємо від усієї нашої компанії за Ваше перевезення!!! Все дуже добре, хороші хлопці, водії, машини. Дякуємо!!! </p>
+                            </div>
+                            <!--/.testimonial-comment-->
                         </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Дякую за те шо доставили щвидко, оперативно і без "пригод". Буду Вас рекомендувати друзям!
-                            </p>
-                        </div>
-                        <!--/.testimonial-comment-->
                     </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Дарина</h2>
-                                <h4></h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
                                 </div>
-                            </div>
-                            <!--/.testimonial-person-->
-                        </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Дуже дякую Вашому колективу, а особливо водіям Максиму і Олександру, вони чудові. Дорога була довгою, але цікавою завдяки спілкуванню. Всі дуже уважні, чуйні і добрі.
-                            </p>
-                        </div>
-                        <!--/.testimonial-comment-->
-                    </div>
-                    <!--/.testimonial-description-->
-                </div>
-                <!--/.single-testimonial-box-->
-                <div class="single-testimonial-box">
-                    <div class="testimonial-description">
-                        <div class="testimonial-info">
-                            <div class="testimonial-img">
-                                <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
-                            </div>
-                            <!--/.testimonial-img-->
-                            <div class="testimonial-person">
-                                <h2>Тетяна</h2>
-                                <h4>Україна</h4>
-                                <div class="testimonial-person-star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Ірина</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
                                 </div>
+                                <!--/.testimonial-person-->
                             </div>
-                            <!--/.testimonial-person-->
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Доброго дня, 10 вересня з вашими перевізниками Євгенієм і Едуардом виїхали з Фінляндії до України і 12 вересня на ранок вже були в Києві, дуже хороші водії, прислухалися до прохань пасажирів. Поїздка була хороша і комфортна, будемо всім їх рекомендувати!
+                                </p>
+                            </div>
+                            <!--/.testimonial-comment-->
                         </div>
-                        <!--/.testimonial-info-->
-                        <div class="testimonial-comment">
-                            <p>
-                                Доброго дня. Хочу подякувати вам за дорогу в Чехію!!! Водій Сергій, що забирав мене з Житомира всю дорогу слухав російський шансон. Це єдиний мінус. В Рівному нас пересадили на інший автобус, з хорошими і чемними водіями. Дорога то було одне задоволення. Дуже чемні, до багажу ставилися як до свого, не кидали сумки, переживали щоб нічого не почавилося, на кордоні допомогали з сумками. Я дуже задоволена!!!!
-                            </p>
-                        </div>
-                        <!--/.testimonial-comment-->
                     </div>
-                    <!--/.testimonial-description-->
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
+                                </div>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Сергій</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <!--/.testimonial-person-->
+                            </div>
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Дякую Вам за пасажирські перевезення. Хороші у Вас водії. </p>
+                            </div>
+                            <!--/.testimonial-comment-->
+                        </div>
+                    </div>
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/m1.jpg" alt="clients">
+                                </div>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Анатолій</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <!--/.testimonial-person-->
+                            </div>
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Дякую за те шо доставили щвидко, оперативно і без "пригод". Буду Вас рекомендувати друзям!
+                                </p>
+                            </div>
+                            <!--/.testimonial-comment-->
+                        </div>
+                    </div>
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
+                                </div>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Дарина</h2>
+                                    <h4></h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <!--/.testimonial-person-->
+                            </div>
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Дуже дякую Вашому колективу, а особливо водіям Максиму і Олександру, вони чудові. Дорога була довгою, але цікавою завдяки спілкуванню. Всі дуже уважні, чуйні і добрі.
+                                </p>
+                            </div>
+                            <!--/.testimonial-comment-->
+                        </div>
+                    </div>
+                    <div class="swiper-slide single-testimonial-box ">
+                        <div class="testimonial-description">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img decoding="async" src="assets/images/clients/f1.png" alt="clients">
+                                </div>
+                                <!--/.testimonial-img-->
+                                <div class="testimonial-person">
+                                    <h2>Тетяна</h2>
+                                    <h4>Україна</h4>
+                                    <div class="testimonial-person-star">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                                <!--/.testimonial-person-->
+                            </div>
+                            <!--/.testimonial-info-->
+                            <div class="testimonial-comment">
+                                <p>
+                                    Доброго дня. Хочу подякувати вам за дорогу в Чехію!!! Водій Сергій, що забирав мене з Житомира всю дорогу слухав російський шансон. Це єдиний мінус. В Рівному нас пересадили на інший автобус, з хорошими і чемними водіями. Дорога то було одне задоволення.
+                                    Дуже чемні, до багажу ставилися як до свого, не кидали сумки, переживали щоб нічого не почавилося, на кордоні допомогали з сумками. Я дуже задоволена!!!!
+                                </p>
+                            </div>
+                            <!--/.testimonial-comment-->
+                        </div>
+                    </div>
                 </div>
-                <!--/.single-testimonial-box-->
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
         </div>
 
@@ -1442,7 +1454,6 @@
         </div>
     </section>
 
-
     <!--footer start-->
     <!-- 
     <footer id="footer" class="footer">
@@ -1509,7 +1520,7 @@
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
     <script src="assets/js/jquery.js"></script>
-
+    <script src="assets/js/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
     <!--modernizr.min.js-->
@@ -1528,11 +1539,7 @@
     <script src="assets/js/jquery.counterup.min.js"></script>
     <script src="assets/js/waypoints.min.js"></script>
 
-    <!--slick.min.js-->
-    <script src="assets/js/slick.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     <!--Custom JS-->
     <script src="assets/js/custom.js"></script>
-    </body
