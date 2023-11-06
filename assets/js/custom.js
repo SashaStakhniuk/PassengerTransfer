@@ -117,6 +117,7 @@ $(document).ready(function() {
     initEventListeners();
     showStep(1);
     initFormValidation();
+
 });
 
 function initDatas() {
@@ -192,6 +193,18 @@ function initEventListeners() {
                 input.val(currentValue + 1);
             }
         }
+    });
+
+    const faqList = $("#faq-list");
+    const faqQuestions = faqList.find(".faq-list-item-question");
+
+    faqQuestions.each(function() {
+        $(this).click(function() {
+            const icon = $(this).find(".faq-icon");
+            icon.toggleClass("rotate-icon");
+            const answer = $(this).next(".faq-list-item-answer");
+            answer.slideToggle();
+        });
     });
 }
 
