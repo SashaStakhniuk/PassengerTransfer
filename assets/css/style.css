@@ -276,6 +276,10 @@ font-family: 'Roboto', sans-serif;
     }
     /*.navbar-brand*/
     
+    .navbar-header {
+        padding: 0 20px;
+    }
+    
     .navbar-header a.navbar-brand,
     .navbar-header a.navbar-brand:hover,
     .navbar-header a.navbar-brand:focus {
@@ -333,10 +337,6 @@ font-family: 'Roboto', sans-serif;
     nav.navbar.bootsnav ul.nav>li.dropdown span {
         font-size: 8px;
         margin-left: 15px;
-    }
-    
-    .wrap-sticky nav.navbar.bootsnav.sticked ul.nav>li>a {
-        padding: 34px 21px;
     }
     /*.nav li*/
     /*.menu-ui-design*/
@@ -597,6 +597,8 @@ font-family: 'Roboto', sans-serif;
         background-size: cover;
         padding: 40px 0;
         margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
     }
     
     #routes .section-header h2 {
@@ -715,6 +717,11 @@ font-family: 'Roboto', sans-serif;
     
     .single-explore-txt {
         padding: 25px 15px;
+        font-size: 12px;
+    }
+    
+    .single-explore-txt p {
+        font-size: 12px;
     }
     
     .single-explore-txt>h2 {
@@ -1477,6 +1484,8 @@ font-family: 'Roboto', sans-serif;
     
     .faq-list p {
         color: #454545;
+        font-size: 16px;
+        text-align: justify;
     }
     
     .faq-list .faq-list-item:after {
