@@ -212,7 +212,7 @@ function initEventListeners() {
         direction: 'horizontal',
         loop: true,
         slidesPerView: 1,
-        autoHeight: true,
+        autoHeight: false,
         simulateTouch: true,
         spaceBetween: 40,
         centeredSlides: true,
@@ -231,18 +231,44 @@ function initEventListeners() {
         //     slideShadows: false
         // },
         breakpoints: {
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 20
+            },
             992: {
-                slidesPerView: 3
+                slidesPerView: 3,
+                spaceBetween: 30
             },
         },
         pagination: {
-            el: '.swiper-pagination',
+            el: '.reviews-swiper .swiper-pagination',
         },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.reviews-swiper .swiper-button-next',
+            prevEl: '.reviews-swiper .swiper-button-prev',
         },
     });
+
+    if ($(window).width() < 580) {
+        const swiper = new Swiper('.countries-swiper', {
+            direction: 'horizontal',
+            loop: false,
+            slidesPerView: 1,
+            autoHeight: true,
+            simulateTouch: true,
+            spaceBetween: 10,
+            centeredSlides: true,
+            grabCursor: true,
+            autoplay: {
+                delay: 5000,
+                stopOnLastSlide: false,
+                disableOnInteraction: true
+            },
+            pagination: {
+                el: '.countries-swiper .swiper-pagination',
+            },
+        });
+    }
 }
 
 function showStep(step) {

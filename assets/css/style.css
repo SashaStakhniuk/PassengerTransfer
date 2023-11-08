@@ -266,6 +266,8 @@ font-family: 'Roboto', sans-serif;
     nav.navbar.bootsnav {
         background-color: #fff;
         border-bottom: transparent;
+        position: relative;
+        z-index: 11;
     }
     
     .wrap-sticky nav.navbar.bootsnav.sticked {
@@ -593,7 +595,8 @@ font-family: 'Roboto', sans-serif;
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: cover;
-        padding: 58px 0 44px;
+        padding: 40px 0;
+        margin-bottom: 50px;
     }
     
     #routes .section-header h2 {
@@ -607,9 +610,11 @@ font-family: 'Roboto', sans-serif;
 --------------------------------------*/
     
     .explore {
-        padding: 50px 0;
-        margin-bottom: 50px;
         background: #f8fafb;
+    }
+    
+    .explore-content {
+        overflow: hidden;
     }
     
     .countries-cards {
@@ -827,11 +832,24 @@ font-family: 'Roboto', sans-serif;
         box-shadow: 0 10px 20px rgba(21, 19, 19, .2);
     }
     /*-------------------------------------
+        8. countries
+--------------------------------------*/
+    
+    .countries-swiper {
+        width: 100%;
+        position: relative;
+        padding-bottom: 30px;
+    }
+    /*-------------------------------------
+        8. countries
+--------------------------------------*/
+    /*-------------------------------------
         8. Reviews
 --------------------------------------*/
     
     .reviews {
-        padding: 50px 0;
+        padding: 65px 0 0 0;
+        margin-top: -65px;
         background: #f8fafb;
     }
     
@@ -840,7 +858,19 @@ font-family: 'Roboto', sans-serif;
     }
     
     .reviews-content {
-        margin-top: 36px;
+        margin-top: 10px;
+    }
+    
+    .reviews .reviews-swiper {
+        padding: 0 35px 20px 35px;
+        position: relative;
+        overflow-x: hidden;
+    }
+    
+    .reviews .reviews-swiper .swiper-wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
     
     .reviews .swiper-button-next:after,
@@ -849,13 +879,14 @@ font-family: 'Roboto', sans-serif;
         color: var(--main-red);
     }
     
-    .reviews .swiper-pagination-bullet-active {
+    .swiper-pagination-bullet-active {
         background: var(--main-red);
     }
     /*single-testimonial-box */
     
     .single-testimonial-box {
-        padding: 50px 30px;
+        padding: 20px;
+        border-radius: 20px;
         box-shadow: 0 0px 5px rgba(71, 71, 71, .2);
         overflow-x: hidden;
         -webkit-transition: .3s;
@@ -1267,12 +1298,17 @@ font-family: 'Roboto', sans-serif;
     }
     
     @media only screen and (max-width: 768px) {
+        .booking__container,
+        .order-btn-block {
+            display: flex;
+            justify-content: center;
+        }
         .booking__image {
-            bottom: -20px;
             margin: 0 auto;
             position: relative;
             -webkit-transform: none;
-            transform: none
+            transform: none;
+            top: 16%;
         }
     }
     /*-------------------------------------
@@ -1432,10 +1468,7 @@ font-family: 'Roboto', sans-serif;
         12. FAQ
 --------------------------------------*/
     
-    #faq {
-        padding: 0;
-        margin-bottom: 40px;
-    }
+    #faq {}
     
     #faq .section-header {
         text-align: left;
@@ -1443,7 +1476,6 @@ font-family: 'Roboto', sans-serif;
     }
     
     .faq-list p {
-        font-size: 17px;
         color: #454545;
     }
     
@@ -1538,6 +1570,8 @@ font-family: 'Roboto', sans-serif;
     
     .footer-menu .navbar-header {
         padding: 0;
+        position: relative;
+        z-index: 11;
     }
     
     .footer-menu .navbar-header a.navbar-brand,
@@ -1797,6 +1831,7 @@ font-family: 'Roboto', sans-serif;
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
     }
     
     .flex {
@@ -1994,7 +2029,7 @@ instructions
         color: #EAE4DA;
         border: none;
         border-radius: 15px;
-        width: calc(50% - 30px);
+        width: 300px;
         height: 40px;
         margin-top: 10px;
         font-weight: 700;
