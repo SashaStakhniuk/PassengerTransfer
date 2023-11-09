@@ -281,7 +281,22 @@
 
 /*max-width:480px*/
 
-@media screen and (max-width: 440px) {}
+@media screen and (max-width: 440px) {
+    .faq-list .faq-list-item:after {
+        top: 17px;
+    }
+    .faq-list .faq-list-item-question p {
+        font-size: 15px;
+    }
+    .faq-list p {
+        font-size: 14px;
+    }
+    .faq-list .faq-icon::after {
+        font-size: 17px;
+        bottom: -1px;
+        left: 5px;
+    }
+}
 
 
 /*max-width:400px*/

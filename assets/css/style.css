@@ -1502,7 +1502,7 @@ font-family: 'Roboto', sans-serif;
     
     .faq-list .faq-list-item {
         border-bottom: 1px solid var(--gray);
-        padding: 5px 5px 5px 30px;
+        padding: 5px 5px 5px 20px;
         position: relative
     }
     
@@ -1522,6 +1522,7 @@ font-family: 'Roboto', sans-serif;
     
     .faq-list .faq-list-item-question p {
         font-size: 20px;
+        text-align: left;
     }
     
     .faq-list .faq-list-item-answer {
@@ -1530,40 +1531,28 @@ font-family: 'Roboto', sans-serif;
     
     .faq-list .faq-icon {
         transition: all 0.3s ease-out;
-        position: absolute;
+        position: relative;
         overflow: hidden;
-        width: 22px;
-        height: 22px;
+        min-width: 22px;
+        min-height: 22px;
         cursor: pointer;
         border-radius: 50%;
         background-color: var(--main-red);
         right: 0;
     }
     
+    .faq-list .faq-icon::after {
+        content: "+";
+        position: absolute;
+        color: #fff;
+        font-size: 20px;
+        bottom: -4px;
+        left: 4px;
+    }
+    
     .faq-list .faq-icon.rotate-icon {
         transform: rotate(-45deg);
         transition: transform 0.3s ease-out;
-    }
-    
-    .faq-list .faq-icon:before,
-    .faq-list .faq-icon:after {
-        content: "";
-        position: absolute;
-        background: #fff;
-    }
-    
-    .faq-list .faq-icon:before {
-        width: 10px;
-        height: 2px;
-        top: 10px;
-        left: 6px;
-    }
-    
-    .faq-list .faq-icon:after {
-        width: 2px;
-        height: 10px;
-        top: 6px;
-        left: 10px;
     }
     
     .atention {
