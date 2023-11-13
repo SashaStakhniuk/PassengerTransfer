@@ -850,6 +850,60 @@ font-family: 'Roboto', sans-serif;
     /*-------------------------------------
         8. countries
 --------------------------------------*/
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 30px;
+        color: var(--main-red);
+    }
+    
+    .swiper-pagination-bullet-active {
+        background: var(--main-red);
+    }
+    
+    .image-slider {
+        padding: 0 0 30px 0;
+    }
+    
+    .image-slider_image {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+        text-align: center;
+    }
+    
+    .image-slider_image img {
+        height: 100%;
+        border-radius: 20px;
+        object-fit: fill;
+    }
+    
+    .reviews-swiper .image-slider_image img {
+        width: 300px;
+    }
+    /*-------------------------------------
+        9. countries
+--------------------------------------*/
+    
+    #vehicles {
+        min-width: 0;
+        background: #f8fafb;
+        padding-bottom: 0;
+    }
+    
+    .vehicles-swiper .swiper-wrapper {
+        height: 380px;
+    }
+    
+    @media screen and (max-width: 540px) {
+        .vehicles-swiper .swiper-wrapper {
+            height: 350px;
+        }
+    }
+    /*-------------------------------------
+    9. countries
+--------------------------------------*/
     /*-------------------------------------
         8. Reviews
 --------------------------------------*/
@@ -878,16 +932,6 @@ font-family: 'Roboto', sans-serif;
         display: flex;
         flex-direction: row;
         align-items: center;
-    }
-    
-    .reviews .swiper-button-next:after,
-    .reviews .swiper-button-prev:after {
-        font-size: 30px;
-        color: var(--main-red);
-    }
-    
-    .swiper-pagination-bullet-active {
-        background: var(--main-red);
     }
     /*single-testimonial-box */
     
@@ -1558,6 +1602,10 @@ font-family: 'Roboto', sans-serif;
     .atention {
         color: var(--main-red);
     }
+    
+    .underline {
+        text-decoration: underline;
+    }
     /*-------------------------------------
         13. Footer
 --------------------------------------*/
@@ -1948,6 +1996,13 @@ instructions
     data-form
 ===============================*/
     
+    .disabled {
+        user-select: none;
+        pointer-events: none;
+        background-color: var(--gray) !important;
+        color: lightgray !important;
+    }
+    
     #make-order-form,
     #make-order-form-modal {
         display: flex;
@@ -2020,6 +2075,24 @@ instructions
         font-weight: 300;
         text-align: center;
         width: 60px;
+    }
+    
+    .form-box .data-box.error input {
+        border-color: var(--main-red);
+    }
+    
+    .form-box .data-box.error input+label {
+        color: var(--main-red);
+    }
+    
+    .form-box .data-box .error-message {
+        display: none;
+        color: var(--main-red);
+        padding: 0 15px;
+    }
+    
+    .form-box .data-box.error .error-message {
+        display: block;
     }
     
     .order-btn {

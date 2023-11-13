@@ -68,70 +68,17 @@ $(document).ready(function() {
     initEventListeners();
     showStep(1);
     initFormValidation();
-
-
-
-
-    // $(".testimonial-carousel").slick({
-    //     infinite: true,
-    //     centerMode: true,
-    //     autoplay: true,
-    //     slidesToShow: 5,
-    //     slidesToScroll: 3,
-    //     autoplaySpeed: 1500,
-    //     // the magic
-    //     responsive: [{
-
-    //             breakpoint: 1440,
-    //             settings: {
-    //                 slidesToShow: 3
-    //             }
-
-    //         },
-    //         {
-
-    //             breakpoint: 1024,
-    //             settings: {
-    //                 slidesToShow: 2,
-
-    //             }
-
-    //         },
-    //         {
-
-    //             breakpoint: 991,
-    //             settings: {
-    //                 slidesToShow: 2,
-    //                 centerMode: false,
-    //             }
-
-    //         },
-    //         {
-
-    //             breakpoint: 767,
-    //             settings: {
-    //                 slidesToShow: 1,
-    //             }
-
-    //         }
-    //     ]
-    // });
-
-
 });
 
 function initDatas() {
     const setMinMaxDate = () => {
         const dateContainer = $('.form-box input[type = "date"]');
         const currentDate = new Date();
-        // const tomorrow = currentDate;
-        // tomorrow.setDate(currentDate.getDate() + 1);
-        const minDateString = currentDate.toISOString().split("T")[0]; //parseDateToString(currentDate, "yyyy-MM-dd");
+        const minDateString = parseDateToString(currentDate, "yyyy-MM-dd");
         dateContainer.attr("min", minDateString);
         dateContainer.attr("value", minDateString);
-
-        //dateContainer.attr("max", maxDate.toLocaleDateString('en'));
     };
+
     setMinMaxDate();
 }
 
@@ -139,11 +86,16 @@ function scrollTo(element) {
     if (element && element.length) {
         $("html, body").animate({
             scrollTop: element.offset().top
-        }, 800);
+        }, 1000);
     }
 }
 
 function initEventListeners() {
+
+    $(".scroll-link").on('click', function(event) {
+        event.preventDefault();
+        scrollTo($(this.hash))
+    });
 
     $(".open-modal-js").click(function() {
         $("#fullscreenModal").fadeIn();
@@ -167,7 +119,7 @@ function initEventListeners() {
 
     // Handle click on steps
     $('.step').click(function() {
-        var step = $(this).data('step');
+        let step = $(this).data('step');
         showStep(step);
     });
 
@@ -207,8 +159,43 @@ function initEventListeners() {
         });
     });
 
+    const vehiclesSeiper = new Swiper('.vehicles-swiper', {
+        direction: 'horizontal',
+        loop: true,
+        slidesPerView: 3,
+        // autoHeight: true,
+        centeredSlides: true,
+        simulateTouch: true,
+        spaceBetween: 10,
+        grabCursor: true,
+        autoplay: {
+            delay: 5000,
+            stopOnLastSlide: false,
+            disableOnInteraction: true
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            880: {
+                slidesPerView: 2,
+                centeredSlides: false,
+            },
+            1240: {
+                slidesPerView: 3,
+                centeredSlides: true,
+            }
+        },
+        pagination: {
+            el: '.vehicles-swiper .swiper-pagination',
+        },
+        navigation: {
+            nextEl: '.vehicles-swiper .swiper-button-next',
+            prevEl: '.vehicles-swiper .swiper-button-prev',
+        },
+    });
+
     const swiper = new Swiper('.reviews-swiper', {
-        // Optional parameters
         direction: 'horizontal',
         loop: true,
         slidesPerView: 1,
@@ -222,14 +209,6 @@ function initEventListeners() {
             stopOnLastSlide: false,
             disableOnInteraction: true
         },
-        // effect: "coverflow",
-        // coverflowEffect: {
-        //     depth: 100,
-        //     scale: 1,
-        //     rotate: 0,
-        //     stretch: 0,
-        //     slideShadows: false
-        // },
         breakpoints: {
             320: {
                 slidesPerView: 1,
@@ -269,6 +248,121 @@ function initEventListeners() {
             },
         });
     }
+
+    let currentStep = 1;
+    showStep(currentStep);
+
+    $(window).on('scroll', function() {
+        // Calculate the position of each step section
+        const steps = $('.step');
+        const windowScrollTop = $(window).scrollTop() + (($(window).height() / 2) - 50);
+
+        // Find the step section currently in view
+        for (let i = 0; i < steps.length; i++) {
+            const step = $(steps[i]);
+            const stepTop = step.offset().top;
+
+            if (windowScrollTop >= stepTop) {
+                currentStep = step.data('step');
+            }
+        }
+
+        showStep(currentStep);
+    });
+
+    $("#make-order-form").submit(function(event) {
+        event.preventDefault();
+
+        const form = $(this);
+
+        const button = form.find(".order-btn");
+        button.addClass("disabled");
+
+        const formData = {
+            addressFrom: form.find('input[name="addressFrom"]'),
+            addressTo: form.find('input[name="addressTo"]'),
+            date: form.find('input[name="date"]'),
+            name: form.find('input[name="name"]'),
+            phone: form.find('input[name="phone"]'),
+            adultAmount: form.find('input[name="adultAmount"]'),
+            kidsAmount: form.find('input[name="kidsAmount"]')
+        }
+
+        for (const key in formData) {
+            if (formData.hasOwnProperty(key)) {
+                const value = formData[key].val().trim();
+
+                if (!value) {
+                    formData[key].closest('.data-box').addClass('error');
+
+                    return;
+                } else {
+                    formData[key].closest('.data-box').removeClass('error');
+                }
+            }
+        }
+
+        if (formData.addressFrom.val().trim().split(" ").length < 3) {
+            formData.addressFrom.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+        if (formData.addressTo.val().trim().split(" ").length < 3) {
+            formData.addressTo.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+        const currentDate = new Date().setHours(0, 0, 0, 0);
+        const formDate = new Date(formData.date.val()).setHours(0, 0, 0, 0);
+
+        if (!isValidDate(formData.date.val()) || formDate < currentDate) {
+            formData.date.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+        console.log(formData.name.val().trim().split(" "));
+        if (formData.name.val().trim().split(" ").length !== 2) {
+            formData.name.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+        const phoneNumberRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+
+        if (!phoneNumberRegex.test(formData.phone)) {
+            formData.phone.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+        if (+formData.adultAmount.val() < 1) {
+            formData.adultAmount.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+        if (+formData.kidsAmount.val() < 0) {
+            formData.kidsAmount.closest('.data-box').addClass('error');
+            button.removeClass("disabled");
+
+            return;
+        }
+
+    });
+}
+
+function isValidDate(dateString) {
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    return regex.test(dateString) && !isNaN(Date.parse(dateString));
 }
 
 function showStep(step) {
@@ -277,20 +371,20 @@ function showStep(step) {
 }
 
 function initFormValidation() {
-    $("form input[type='tel']").on("keydown", (e) => {
-        if (isNaN(parseInt(String.fromCharCode(e.which)))) {
-            e.preventDefault();
-            return;
-        }
-        // var phoneNumber = e.target.value;
-        // var phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+    // $("form input[type='tel']").on("keydown", (e) => {
+    //     if (isNaN(parseInt(String.fromCharCode(e.which)))) {
+    //         e.preventDefault();
+    //         return;
+    //     }
+    //     // let phoneNumber = e.target.value;
+    //     // let phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
 
-        // if (phoneRegex.test(phoneNumber)) {
-        //     //alert('Valid phone number!');
-        // } else {
-        //     //alert('Invalid phone number! Please enter a valid international phone number.');
-        // }
-    });
+    //     // if (phoneRegex.test(phoneNumber)) {
+    //     //     //alert('Valid phone number!');
+    //     // } else {
+    //     //     //alert('Invalid phone number! Please enter a valid international phone number.');
+    //     // }
+    // });
 }
 
 
@@ -314,7 +408,7 @@ function initFormValidation() {
 //         const button = $("#submit-call");
 //         button.addClass("disable");
 
-//         var formData = new FormData(event.target)
+//         let formData = new FormData(event.target)
 
 //         const name = formData.get('name');
 //         let phone = formData.get('phone');
