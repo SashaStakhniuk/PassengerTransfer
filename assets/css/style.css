@@ -514,10 +514,6 @@ font-family: 'Roboto', sans-serif;
         gap: 20px;
     }
     
-    .list-topics-content ul li {
-        display: inline-block;
-    }
-    
     .single-list-topics-content {
         display: flex;
         align-items: center;
@@ -898,7 +894,7 @@ font-family: 'Roboto', sans-serif;
     
     @media screen and (max-width: 540px) {
         .vehicles-swiper .swiper-wrapper {
-            height: 350px;
+            height: 300px;
         }
     }
     /*-------------------------------------
@@ -1723,13 +1719,13 @@ font-family: 'Roboto', sans-serif;
     }
     
     .footer-social .fa {
-        font-size: 25px;
+        font-size: 30px;
     }
     
     .footer-social a {
-        width: 40px;
-        height: 40px;
-        line-height: 49px;
+        width: 50px;
+        height: 50px;
+        line-height: 62px;
         background: #eef2f6;
         text-align: center;
         border-radius: 50%;
