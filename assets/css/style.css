@@ -2108,6 +2108,14 @@ instructions
         transition: all 0.4s ease;
     }
     
+    .order-btn.disabled {
+        border-color: #333;
+    }
+    
+    .order-btn.disabled:hover {
+        border-color: #333;
+    }
+    
     .order-btn:hover {
         outline: 1px solid var(--main-red);
         border: 1px solid var(--main-red);
@@ -2154,17 +2162,24 @@ instructions
         left: 35px;
     }
     
+    .form-box .data-box input[name="phone"]::placeholder {
+        color: #ebebeb;
+        opacity: 1;
+    }
+    
+    .form-box .data-box input[name="date_submit"]+label,
+    .form-box .data-box input[name="phone"]+label,
     .form-box .data-box input[type="text"]:focus~label,
-    .form-box .data-box input[type="tel"]:focus~label,
-    .form-box .data-box input[type="date"]:focus~label,
-    .form-box .data-box input[type="text"]:valid~label,
-    .form-box .data-box input[type="tel"]:valid~label,
-    .form-box .data-box input[type="date"]:valid~label {
+    .form-box .data-box input[type="text"]:valid~label {
         top: -9px;
         left: 25px;
         font-size: 12px;
         padding: 0;
         background-color: #3f3f3f;
+    }
+    
+    .form-box .data-box input[name="date"] {
+        padding-left: 25px;
     }
     
     .change-number-btn {

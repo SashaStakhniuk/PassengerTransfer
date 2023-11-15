@@ -103,6 +103,9 @@
     .form-row {
         flex-wrap: wrap;
     }
+    #amount-of-peoples-block.form-row {
+        flex-wrap: nowrap;
+    }
 }
 
 
@@ -248,6 +251,9 @@
     #list-topics .single-list-topics-content>h2 {
         font-size: 15px;
     }
+    #order {
+        padding: 25px 0;
+    }
     /* .explore-content .flex-blocks-container {
         flex-direction: row;
         flex-wrap: nowrap;
@@ -305,6 +311,9 @@
     }
     .contacts-block .phone {
         text-wrap: nowrap;
+    }
+    #amount-of-peoples-block.form-row {
+        flex-wrap: wrap;
     }
 }
 

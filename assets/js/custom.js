@@ -1,5 +1,9 @@
 const today = new Date();
 const outputDateFormat = 'yyyy-MM-dd';
+const postalCodeRegex = /^[a-zA-Z\s]*[0-9\s-]+[a-zA-Z\s]*$/;
+const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+const nameRegex = /^[a-zA-Zа-яА-Я]{2,}\s[a-zA-Zа-яА-Я]{2,}$/;
+const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
 
 $(document).ready(function() {
     "use strict";
@@ -68,18 +72,46 @@ $(document).ready(function() {
     initEventListeners();
     showStep(1);
     initFormValidation();
+    $('#phone').inputmask("+38 (099) 99-99-999");
+
 });
 
 function initDatas() {
-    const setMinMaxDate = () => {
-        const dateContainer = $('.form-box input[type = "date"]');
-        const currentDate = new Date();
-        const minDateString = parseDateToString(currentDate, "yyyy-MM-dd");
-        dateContainer.attr("min", minDateString);
-        dateContainer.attr("value", minDateString);
-    };
+    const currentDate = new Date();
+    const maxDate = new Date(currentDate);
+    maxDate.setDate(maxDate.getDate() + 30);
 
-    setMinMaxDate();
+    const datePickerFormat = "dd.MM.yyyy";
+    const minDateString = parseDateToString(currentDate, datePickerFormat);
+    const maxDateString = parseDateToString(maxDate, datePickerFormat);
+
+    const dateContainer = $('.form-box input[type = "date"]');
+
+    if (!dateContainer.length) {
+        return;
+    }
+
+    dateContainer.pickadate({
+        min: minDateString,
+        max: maxDateString,
+        format: 'dd.mm.yyyy',
+        clear: '',
+        today: '',
+        onStart: function() {
+            this.set('select', currentDate);
+        },
+        onSet: function(context) {
+            if (!context.select) {
+                return;
+            }
+
+            const selectedDay = new Date(context.select);
+            const selectedDayString = parseDateToString(selectedDay, "yyyy-MM-dd");
+            dateContainer.attr("value", selectedDayString);
+            dateContainer.attr("min", minDateString);
+            dateContainer.attr("max", maxDateString);
+        }
+    });
 }
 
 function scrollTo(element) {
@@ -155,7 +187,7 @@ function initEventListeners() {
             const icon = $(this).find(".faq-icon");
             icon.toggleClass("rotate-icon");
             const answer = $(this).next(".faq-list-item-answer");
-            answer.slideToggle();
+            answer.slideToggle("slow");
         });
     });
 
@@ -274,7 +306,6 @@ function initEventListeners() {
         event.preventDefault();
 
         const form = $(this);
-
         const button = form.find(".order-btn");
         button.addClass("disabled");
 
@@ -302,67 +333,102 @@ function initEventListeners() {
             }
         }
 
-        if (formData.addressFrom.val().trim().split(" ").length < 3) {
+        let isDataValid = true;
+
+        const addressFrom = formData.addressFrom.val().trim();
+
+        if (!isAddressValid(addressFrom)) {
             formData.addressFrom.closest('.data-box').addClass('error');
-            button.removeClass("disabled");
-
-            return;
+            isDataValid = false;
         }
 
-        if (formData.addressTo.val().trim().split(" ").length < 3) {
+        const addressTo = formData.addressTo.val().trim();
+
+        if (!isAddressValid(addressTo)) {
             formData.addressTo.closest('.data-box').addClass('error');
-            button.removeClass("disabled");
-
-            return;
+            isDataValid = false;
         }
 
-        const currentDate = new Date().setHours(0, 0, 0, 0);
-        const formDate = new Date(formData.date.val()).setHours(0, 0, 0, 0);
+        const currentDate = new Date();
+        currentDate.setHours(0, 0, 0, 0);
+        const formDateValue = formData.date.attr("value");
+        const formDate = new Date(formDateValue);
+        formDate.setHours(0, 0, 0, 0);
 
-        if (!isValidDate(formData.date.val()) || formDate < currentDate) {
+        if (!isValidDate(formDateValue) || formDate < currentDate) {
             formData.date.closest('.data-box').addClass('error');
-            button.removeClass("disabled");
-
-            return;
+            isDataValid = false;
         }
 
-        console.log(formData.name.val().trim().split(" "));
-        if (formData.name.val().trim().split(" ").length !== 2) {
+        const passengerName = formData.name.val().trim();
+
+        if (!nameRegex.test(passengerName)) {
             formData.name.closest('.data-box').addClass('error');
-            button.removeClass("disabled");
-
-            return;
+            isDataValid = false;
         }
 
-        const phoneNumberRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
+        let passengerPhoneNumber = formData.phone.val().trim();
+        passengerPhoneNumber = passengerPhoneNumber.replace(/[()-\s]/g, '');
 
-        if (!phoneNumberRegex.test(formData.phone)) {
+        if (!phoneNumberRegex.test(passengerPhoneNumber)) {
             formData.phone.closest('.data-box').addClass('error');
-            button.removeClass("disabled");
-
-            return;
+            isDataValid = false;
         }
 
-        if (+formData.adultAmount.val() < 1) {
+        const adultPassengersAmount = +formData.adultAmount.val();
+
+        if (adultPassengersAmount < 1 || adultPassengersAmount > 100) {
             formData.adultAmount.closest('.data-box').addClass('error');
-            button.removeClass("disabled");
-
-            return;
+            isDataValid = false;
         }
 
-        if (+formData.kidsAmount.val() < 0) {
+        const kidsPassengersAmount = +formData.kidsAmount.val();
+
+        if (kidsPassengersAmount < 0 || kidsPassengersAmount > 100) {
             formData.kidsAmount.closest('.data-box').addClass('error');
+            isDataValid = false;
+        }
+
+        if (!isDataValid) {
             button.removeClass("disabled");
 
             return;
         }
 
+        const textToSend = `
+        \nХочу забронювати місце. Мої дані:
+        \nІм'я: ${passengerName}
+        \nНомер телефону: ${passengerPhoneNumber}
+        \nЗвідки: ${addressFrom}
+        \nКуди: ${addressTo}
+        \nКоли: ${parseDateToString(formDate, "dd.MM.yyyy")}
+        \nК-сть дорослих: ${adultPassengersAmount}
+        \nК-сть дітей: ${kidsPassengersAmount}`;
+        console.log(textToSend);
+        button.removeClass("disabled");
     });
 }
 
+function isAddressValid(address) {
+    if (!address) {
+        return false;
+    }
+
+    const isValidPostalCode = postalCodeRegex.test(address);
+    const addressLength = address.length;
+    const wordsInAddress = address.split(" ").length;
+
+    if (!isValidPostalCode || (wordsInAddress === 1 && addressLength < 3)) {
+        if (wordsInAddress < 3) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 function isValidDate(dateString) {
-    const regex = /^\d{4}-\d{2}-\d{2}$/;
-    return regex.test(dateString) && !isNaN(Date.parse(dateString));
+    return dateRegex.test(dateString) && !isNaN(Date.parse(dateString));
 }
 
 function showStep(step) {

@@ -16,7 +16,6 @@
     <meta name="keywords" content="пасажирські перевезення, транспортна компанія, автоперевезення, комфортабельні поїздки, пасажирський транспорт, трансфери, професійні водії, швидкі та безпечні поїздки, Україна, Європа, Фінляндія, Латвія, Литва, Естонія, Польща, Чехія, Німеччина, Нідерланди, Бельгія,
      passenger, transportation company, car transportation, comfortable trips, passenger transport, transfers, professional drivers, fast and safe trips, Ukraine, Europe, Finland Latvia, Lithuania, Estonia, Poland, Czech Republic, Germany, Netherlands, Belgium"
     />
-
     <!-- For favicon png -->
     <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon_bus.png" />
 
@@ -24,6 +23,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
 
+    <link rel="stylesheet" href="./assets/css/pickadate/default.css">
+    <link rel="stylesheet" href="./assets/css/pickadate/default.date.css">
     <!--font-awesome.min.css-->
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
@@ -724,7 +725,7 @@
                             <li>Зупинка на першу вимогу</li>
                             <li>Перевезення дітей за дорученням</li>
                             <li>Доставка посилок: до 25кг - 50€, від 25кг +2€ за кг </li>
-                            <li>Діє система знижок: групам людей від 3 пасажирів знижка ~10€ кожному. </li>
+                            <li>Діє система знижок: групам людей від 3 пасажирів знижка 10€ кожному. </li>
                         </ul>
                     </div>
                 </div>
@@ -1316,7 +1317,7 @@
 
                             </div>
                             <div class="data-box">
-                                <input id="date" class="input-icon" type="date" name="date" placeholder="" required="true">
+                                <input id="date" class="datepicker input-icon" type="date" name="date" placeholder="" required="true">
                                 <label>Коли</label>
                                 <p class="error-message">Введена дата не повинна бути меншою ніж поточна</p>
                             </div>
@@ -1328,12 +1329,12 @@
                                 <p class="error-message">Допустима к-сть слів: 2. Мінімальна к-сть букв в імені та прізвищі: 2</p>
                             </div>
                             <div class="data-box">
-                                <input type="tel" id="phone" class="input-icon phone" name="phone" value="0975455312" required="true">
+                                <input type="text" id="phone" class="input-icon phone" name="phone" minlength="19" maxlength="19" placeholder="+38 (0__) __-__-___" required="true">
                                 <label>Номер телефону</label>
                                 <p class="error-message">Некоректний формат. Введені цифри не є номером телефону</p>
                             </div>
                         </div>
-                        <div class="form-row">
+                        <div id="amount-of-peoples-block" class="form-row">
                             <div class="data-box">
                                 <div class="center">
                                     <div>
@@ -1345,10 +1346,10 @@
                                         </span>
                                         <div class="data-numbers-input">
                                             <button class="change-number-btn" data-operation="minus">-</button>
-                                            <input id="adult-amount" type="number" min="1" value="1" name="adultAmount" required="true">
+                                            <input id="adult-amount" type="number" min="1" max="100" value="1" name="adultAmount" required="true">
                                             <button class="change-number-btn" data-operation="plus">+</button>
                                         </div>
-                                        <p class="error-message">Мінімальна к-сть дорослих: 1</p>
+                                        <p class="error-message">Мінімальна к-сть дорослих: 1, максимальна - 100</p>
                                     </div>
                                 </div>
                             </div>
@@ -1363,10 +1364,10 @@
                                     </span>
                                         <div class="data-numbers-input">
                                             <button class="change-number-btn" data-operation="minus">-</button>
-                                            <input id="kids-amount" type="number" min="0" value="0" name="kidsAmount" required="true">
+                                            <input id="kids-amount" type="number" min="0" max="100" value="0" name="kidsAmount" required="true">
                                             <button class="change-number-btn" data-operation="plus">+</button>
                                         </div>
-                                        <p class="error-message">Мінімальна к-сть дітей: 0</p>
+                                        <p class="error-message">Мінімальна к-сть дітей: 0, максимальна - 100</p>
                                     </div>
                                 </div>
                             </div>
@@ -1446,7 +1447,13 @@
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
 
     <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.inputmask.bundle.js"></script>
     <script src="assets/js/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="./assets/js/pickadate/picker.js"></script>
+    <script type="text/javascript" src="./assets/js/pickadate/picker.date.js"></script>
+    <script type="text/javascript" src="./assets/js/pickadate/picker.time.js"></script>
+    <script type="text/javascript" src="./assets/js/pickadate/translations/uk_UA.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
     <!--modernizr.min.js-->
