@@ -301,6 +301,7 @@
         margin-bottom: 18px;
     }
     .welcome-hero-txt h2 {
+        font-size: 18px;
         line-height: 1.2;
     }
     .subscription-input-group .subscription-input-form {
@@ -347,6 +348,10 @@
     .footer-social span {
         display: block;
         margin-bottom: 15px;
+    }
+    .welcome-hero-txt h2 {
+        font-size: 17px;
+        line-height: 1.2;
     }
 }
 

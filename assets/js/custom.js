@@ -2,21 +2,11 @@ const today = new Date();
 const outputDateFormat = 'yyyy-MM-dd';
 const postalCodeRegex = /^[a-zA-Z\s]*[0-9\s-]+[a-zA-Z\s]*$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-const nameRegex = /^[a-zA-Zа-яА-Я]{2,}\s[a-zA-Zа-яА-Я]{2,}$/;
-const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+const nameRegex = /^[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}\s[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}$/;
+//const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+const phoneNumberRegex = /^\+38 \(0[0-9]{2}\) \d{2}-\d{2}-\d{3}$/;
 
 $(document).ready(function() {
-    "use strict";
-
-    /*==================================
-* Author        : "ThemeSine"
-* Template Name : Listrace directory HTML Template
-* Version       : 1.0
-==================================== */
-
-
-
-
     /*=========== TABLE OF CONTENTS ===========
     1. Scroll To Top 
     2. slick carousel
@@ -70,10 +60,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     initDatas();
     initEventListeners();
-    showStep(1);
     initFormValidation();
-    $('#phone').inputmask("+38 (099) 99-99-999");
-
 });
 
 function initDatas() {
@@ -112,6 +99,8 @@ function initDatas() {
             dateContainer.attr("max", maxDateString);
         }
     });
+
+    $('.form-box input[name = "phone"]').inputmask("+38 (099) 99-99-999");
 }
 
 function scrollTo(element) {
@@ -131,30 +120,27 @@ function initEventListeners() {
 
     $(".open-modal-js").click(function() {
         $("#fullscreenModal").fadeIn();
-        $("body").addClass("modal-open"); // Disable scrolling
+        $("body").addClass("modal-open");
     });
 
-    // Close the modal
     $(".close").click(function() {
         $("#fullscreenModal").fadeOut();
-        $("body").removeClass("modal-open"); // Enable scrolling
+        $("body").removeClass("modal-open");
     });
 
-    // Close the modal if clicked outside the content
     $(window).click(function(event) {
         if (event.target === $("#fullscreenModal")[0]) {
             $("#fullscreenModal").fadeOut();
-            $("body").removeClass("modal-open"); // Enable scrolling
+            $("body").removeClass("modal-open");
         }
     });
 
-
-    // Handle click on steps
     $('.step').click(function() {
         let step = $(this).data('step');
         showStep(step);
     });
 
+    showStep(1);
 
     $('.order-btn-js').click(function() {
         scrollTo($('#order'));
@@ -195,7 +181,6 @@ function initEventListeners() {
         direction: 'horizontal',
         loop: true,
         slidesPerView: 3,
-        // autoHeight: true,
         centeredSlides: true,
         simulateTouch: true,
         spaceBetween: 10,
@@ -260,36 +245,48 @@ function initEventListeners() {
         },
     });
 
-    if ($(window).width() < 580) {
-        const swiper = new Swiper('.countries-swiper', {
-            direction: 'horizontal',
-            loop: false,
-            slidesPerView: 1,
-            autoHeight: true,
-            simulateTouch: true,
-            spaceBetween: 10,
-            centeredSlides: true,
-            grabCursor: true,
-            autoplay: {
-                delay: 1000,
-                stopOnLastSlide: false,
-                disableOnInteraction: true
-            },
-            pagination: {
-                el: '.countries-swiper .swiper-pagination',
-            },
-        });
+    let countriesSwiper;
+
+    function toogleCountriesSwiper() {
+        if ($(window).width() <= 580) {
+            countriesSwiper = new Swiper('.countries-swiper', {
+                direction: 'horizontal',
+                loop: false,
+                slidesPerView: 1,
+                autoHeight: true,
+                simulateTouch: true,
+                spaceBetween: 10,
+                centeredSlides: true,
+                grabCursor: true,
+                autoplay: {
+                    delay: 1000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: true
+                },
+                pagination: {
+                    el: '.countries-swiper .swiper-pagination',
+                },
+            });
+        } else {
+            if (countriesSwiper) {
+                countriesSwiper.destroy();
+            }
+        }
     }
+
+    toogleCountriesSwiper();
+
+    $(window).resize(function() {
+        toogleCountriesSwiper()
+    });
 
     let currentStep = 1;
     showStep(currentStep);
 
     $(window).on('scroll', function() {
-        // Calculate the position of each step section
         const steps = $('.step');
         const windowScrollTop = $(window).scrollTop() + (($(window).height() / 2) - 50);
 
-        // Find the step section currently in view
         for (let i = 0; i < steps.length; i++) {
             const step = $(steps[i]);
             const stepTop = step.offset().top;
