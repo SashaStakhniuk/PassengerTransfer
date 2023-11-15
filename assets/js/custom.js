@@ -3,8 +3,8 @@ const outputDateFormat = 'yyyy-MM-dd';
 const postalCodeRegex = /^[a-zA-Z\s]*[0-9\s-]+[a-zA-Z\s]*$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 const nameRegex = /^[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}\s[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}$/;
-//const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
-const phoneNumberRegex = /^\+38 \(0[0-9]{2}\) \d{2}-\d{2}-\d{3}$/;
+const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+//const phoneNumberRegex = /^\+38 \(0[0-9]{2}\) \d{2}-\d{2}-\d{3}$/;
 
 $(document).ready(function() {
     /*=========== TABLE OF CONTENTS ===========
