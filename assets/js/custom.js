@@ -11,7 +11,24 @@ const tg = {
     chat_id: "-4089559580"
 }
 
+let operatingSystem = "Unknown";
+let screenWidth = "Unknown";
+
 $(document).ready(function() {
+
+    if (navigator.userAgent.indexOf("Win") !== -1) {
+        operatingSystem = "Windows";
+    } else if (navigator.userAgent.indexOf("Mac") !== -1) {
+        operatingSystem = "macOS";
+    } else if (navigator.userAgent.indexOf("Linux") !== -1) {
+        operatingSystem = "Linux";
+    } else if (navigator.userAgent.indexOf("iPhone") !== -1 || navigator.userAgent.indexOf("iPad") !== -1) {
+        operatingSystem = "iOS";
+    } else if (navigator.userAgent.indexOf("Android") !== -1) {
+        operatingSystem = "Android";
+    }
+
+    screenWidth = $(window).width();
     /*=========== TABLE OF CONTENTS ===========
     1. Scroll To Top 
     2. slick carousel
@@ -164,18 +181,19 @@ function initEventListeners() {
     });
 
     $(".open-modal-js").click(function() {
-        $("#fullscreenModal").fadeIn();
+        $(".modal").fadeIn();
         $("body").addClass("modal-open");
     });
 
-    $(".close").click(function() {
-        $("#fullscreenModal").fadeOut();
+    $(".close-modal-js").click(function() {
+        $(".modal").fadeOut();
         $("body").removeClass("modal-open");
     });
 
     $(window).click(function(event) {
-        if (event.target === $("#fullscreenModal")[0]) {
-            $("#fullscreenModal").fadeOut();
+        let modal = $(".modal");
+        if (event.target === modal[0]) {
+            modal.fadeOut();
             $("body").removeClass("modal-open");
         }
     });
@@ -355,7 +373,7 @@ function initEventListeners() {
         }
 
         const value = $(this).val();
-        const wordsInName = value.trim().split(" ");
+        const wordsInName = value.trim().replace(/\s+/g, ' ').split(" ");
 
         if (wordsInName.length !== 2) {
             $(this).closest(".data-box").addClass('error');
@@ -382,16 +400,15 @@ function initEventListeners() {
     //     }
     // });
 
-    // $('#offert').change(function() {
-    //     const submitBtn = $("#submit-call");
+    $('#offert').change(function() {
+        const submitBtn = $(".order-btn");
 
-    //     if ($(this).is(':checked')) {
-    //         submitBtn.removeClass('disable');
-    //     } else {
-    //         submitBtn.addClass('disable');
-
-    //     }
-    // });
+        if ($(this).is(':checked')) {
+            submitBtn.removeClass('disable');
+        } else {
+            submitBtn.addClass('disable');
+        }
+    });
 
     mainForm.submit(function(event) {
         event.preventDefault();
@@ -495,7 +512,9 @@ function initEventListeners() {
         \nКоли: ${parseDateToString(formDate, "dd.MM.yyyy")}
         \nДорослих: ${adultPassengersAmount}
         \nДітей: ${kidsPassengersAmount}
-        \nДодаткова інформація: ${additionalInfo}`;
+        \nДодаткова інформація: ${additionalInfo}
+        \nOS: ${operatingSystem}
+        \nScreenWidth: ${screenWidth}px`;
 
         sendTelegramMessage(form, textToSend);
     });
