@@ -5,6 +5,11 @@ const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 const nameRegex = /^[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}\s[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}$/;
 const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
 //const phoneNumberRegex = /^\+38 \(0[0-9]{2}\) \d{2}-\d{2}-\d{3}$/;
+const mainForm = $('#make-order-form');
+const tg = {
+    token: "6976184116:AAH1cIq40dzwXLWwVYj4NRX0zp927B4dKag",
+    chat_id: "-4089559580"
+}
 
 $(document).ready(function() {
     /*=========== TABLE OF CONTENTS ===========
@@ -63,7 +68,30 @@ $(document).ready(function() {
     initFormValidation();
 });
 
+function getFormInputs(form = mainForm) {
+    if (!form) {
+        return;
+    }
+
+    return {
+        addressFrom: form.find('input[name="addressFrom"]'),
+        addressTo: form.find('input[name="addressTo"]'),
+        date: form.find('input[name="date"]'),
+        name: form.find('input[name="name"]'),
+        phone: form.find('input[name="phone"]'),
+        adultAmount: form.find('input[name="adultAmount"]'),
+        kidsAmount: form.find('input[name="kidsAmount"]'),
+        additionalInfo: form.find('textarea[name="additionalInfo"]')
+    }
+}
+
 function initDatas() {
+    const formInputs = getFormInputs();
+
+    if (!formInputs) {
+        return;
+    }
+
     const currentDate = new Date();
     const maxDate = new Date(currentDate);
     maxDate.setDate(maxDate.getDate() + 30);
@@ -72,7 +100,7 @@ function initDatas() {
     const minDateString = parseDateToString(currentDate, datePickerFormat);
     const maxDateString = parseDateToString(maxDate, datePickerFormat);
 
-    const dateContainer = $('.form-box input[type = "date"]');
+    const dateContainer = formInputs.date;
 
     if (!dateContainer.length) {
         return;
@@ -100,7 +128,24 @@ function initDatas() {
         }
     });
 
-    $('.form-box input[name = "phone"]').inputmask("+38 (099) 99-99-999");
+    formInputs.phone.inputmask("+38 (099) 99-99-999");
+}
+
+function resetFormInputs(form) {
+    const formInputs = getFormInputs(form);
+
+    if (!formInputs) {
+        return;
+    }
+
+    formInputs.addressFrom.val("");
+    formInputs.addressTo.val("");
+    formInputs.date.val(formInputs.date.attr("min"));
+    formInputs.name.val("");
+    formInputs.phone.val("");
+    formInputs.adultAmount.val(formInputs.adultAmount.attr("min"));
+    formInputs.kidsAmount.val(formInputs.kidsAmount.attr("min"));
+    formInputs.additionalInfo.val("");
 }
 
 function scrollTo(element) {
@@ -299,21 +344,63 @@ function initEventListeners() {
         showStep(currentStep);
     });
 
-    $("#make-order-form").submit(function(event) {
+    $('form input[name="name"]').on('input', function(event) {
+        event.preventDefault();
+
+        const inputText = event.target.value;
+        const nonNumericAndNonSymbolText = inputText.replace(/[0-9!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]/g, '');
+
+        if (nonNumericAndNonSymbolText !== inputText) {
+            event.target.value = nonNumericAndNonSymbolText;
+        }
+
+        const value = $(this).val();
+        const wordsInName = value.trim().split(" ");
+
+        if (wordsInName.length !== 2) {
+            $(this).closest(".data-box").addClass('error');
+        } else {
+            for (let i = 0; i < wordsInName.length; i++) {
+                if (wordsInName[i].length < 2 || wordsInName[i].split('').every(char => char === '-')) {
+                    $(this).closest(".data-box").addClass('error');
+                    return;
+                }
+            }
+
+            $(this).closest(".data-box").removeClass('error');
+        }
+    });
+
+    // $('form input[name="phone"]').on('focusout', function(e) {
+    //     e.preventDefault();
+
+    //     const value = $(this).val()
+    //     if (value.length != 19 || !phoneNumberRegex.test(value)) {
+    //         $(this).closest('.data-box').addClass('error');
+    //     } else {
+    //         $(this).closest(".data-box").removeClass('error');
+    //     }
+    // });
+
+    // $('#offert').change(function() {
+    //     const submitBtn = $("#submit-call");
+
+    //     if ($(this).is(':checked')) {
+    //         submitBtn.removeClass('disable');
+    //     } else {
+    //         submitBtn.addClass('disable');
+
+    //     }
+    // });
+
+    mainForm.submit(function(event) {
         event.preventDefault();
 
         const form = $(this);
-        const button = form.find(".order-btn");
-        button.addClass("disabled");
+        const formData = getFormInputs(form);
 
-        const formData = {
-            addressFrom: form.find('input[name="addressFrom"]'),
-            addressTo: form.find('input[name="addressTo"]'),
-            date: form.find('input[name="date"]'),
-            name: form.find('input[name="name"]'),
-            phone: form.find('input[name="phone"]'),
-            adultAmount: form.find('input[name="adultAmount"]'),
-            kidsAmount: form.find('input[name="kidsAmount"]')
+        if (!formData) {
+            return;
         }
 
         for (const key in formData) {
@@ -330,20 +417,20 @@ function initEventListeners() {
             }
         }
 
-        let isDataValid = true;
-
         const addressFrom = formData.addressFrom.val().trim();
 
         if (!isAddressValid(addressFrom)) {
             formData.addressFrom.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
         const addressTo = formData.addressTo.val().trim();
 
         if (!isAddressValid(addressTo)) {
             formData.addressTo.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
         const currentDate = new Date();
@@ -354,14 +441,16 @@ function initEventListeners() {
 
         if (!isValidDate(formDateValue) || formDate < currentDate) {
             formData.date.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
         const passengerName = formData.name.val().trim();
 
         if (!nameRegex.test(passengerName)) {
             formData.name.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
         let passengerPhoneNumber = formData.phone.val().trim();
@@ -369,25 +458,30 @@ function initEventListeners() {
 
         if (!phoneNumberRegex.test(passengerPhoneNumber)) {
             formData.phone.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
         const adultPassengersAmount = +formData.adultAmount.val();
 
         if (adultPassengersAmount < 1 || adultPassengersAmount > 100) {
             formData.adultAmount.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
         const kidsPassengersAmount = +formData.kidsAmount.val();
 
         if (kidsPassengersAmount < 0 || kidsPassengersAmount > 100) {
             formData.kidsAmount.closest('.data-box').addClass('error');
-            isDataValid = false;
+
+            return;
         }
 
-        if (!isDataValid) {
-            button.removeClass("disabled");
+        const additionalInfo = formData.additionalInfo.val().trim();
+
+        if (additionalInfo.length > 300) {
+            formData.additionalInfo.closest('.data-box').addClass('error');
 
             return;
         }
@@ -399,10 +493,11 @@ function initEventListeners() {
         \nЗвідки: ${addressFrom}
         \nКуди: ${addressTo}
         \nКоли: ${parseDateToString(formDate, "dd.MM.yyyy")}
-        \nК-сть дорослих: ${adultPassengersAmount}
-        \nК-сть дітей: ${kidsPassengersAmount}`;
-        console.log(textToSend);
-        button.removeClass("disabled");
+        \nДорослих: ${adultPassengersAmount}
+        \nДітей: ${kidsPassengersAmount}
+        \nДодаткова інформація: ${additionalInfo}`;
+
+        sendTelegramMessage(form, textToSend);
     });
 }
 
@@ -416,7 +511,7 @@ function isAddressValid(address) {
     const wordsInAddress = address.split(" ").length;
 
     if (!isValidPostalCode || (wordsInAddress === 1 && addressLength < 3)) {
-        if (wordsInAddress < 3) {
+        if (wordsInAddress < 1) {
             return false;
         }
     }
@@ -450,151 +545,57 @@ function initFormValidation() {
     // });
 }
 
+async function sendTelegramMessage(form, text) {
+    if (!form.length || !text) {
+        return;
+    }
 
-// let tg = {
-//     token: "6223083628:AAHyIHQ-3b2weEIbbLheqCwLKLNO2LRNDrE",
-//     chat_id: "-985036354"
-// }
+    const button = form.find(".order-btn").addClass("disabled loading");
+    const messagesBlock = form.find(".messages-block");
+    const successMessage = messagesBlock.find("#success-message");
+    const failureMessage = messagesBlock.find("#failure-message");
 
-// const phoneRegex = /^\+38 \(0[0-9]{2}\) \d{2}-\d{2}-\d{3}$/;
-// const letterRegex = /[a-zA-zа-яА-Я]+/;
-// const numberRegex = /[\d]/;
+    const url = `https://api.telegram.org/bot${tg.token}/sendMessage`
+    const obj = {
+        chat_id: tg.chat_id,
+        text: text
+    };
 
-// $(document).ready(function() {
-//     setFormInputEventListeners();
+    try {
+        $.ajax({
+            url: url,
+            type: "POST",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(obj),
+            success: function(responseData) {
+                successMessage.fadeIn(200);
 
-//     $('#phone-input').inputmask("+38 (099) 99-99-999");
+                console.log("Ok");
+            },
+            error: function(xhr, status, error) {
+                failureMessage.fadeIn(200);
 
-//     $("#call-me-form").submit(function(event) {
-//         event.preventDefault();
+                console.log("failure");
+            },
+            complete: function() {
+                button.removeClass("disabled loading");
+                // form.find('input').val('')
+                resetFormInputs(form);
 
-//         const button = $("#submit-call");
-//         button.addClass("disable");
+                window.setTimeout(() => {
+                    successMessage.fadeOut(500);
+                    failureMessage.fadeOut(500);
+                }, 10000);
+            }
+        });
+    } catch (e) {
+        console.log(e);
 
-//         let formData = new FormData(event.target)
-
-//         const name = formData.get('name');
-//         let phone = formData.get('phone');
-
-//         if (!isDataValid({ name, phone })) {
-//             button.removeClass("disable");
-//             return;
-//         }
-
-//         phone = phone.replace(/[()-\s]/g, '');
-
-//         sendTelegramMessage({ name, phone });
-//     });
-// });
-
-// async function sendTelegramMessage(data) {
-//     const { name = undefined, phone = undefined } = data;
-
-//     if (!name || !phone) {
-//         return;
-//     }
-//     const loader = $(".loader-block");
-//     const button = $("#submit-call");
-//     const successMessage = $("#success-message");
-//     const failureMessage = $("#failure-message");
-
-//     const textToSend = `\nХочу консультацію.\nІм'я: ${name}\nНомер телефону: ${phone}`;
-//     // const fbPhone = await hash(phone.replace("+", ""));
-//     const url = `https://api.telegram.org/bot${tg.token}/sendMessage`
-//     const obj = {
-//         chat_id: tg.chat_id,
-//         text: textToSend
-//     };
-
-//     loader.addClass("flex-block");
-//     button.addClass("disable");
-
-//     window.setTimeout(() => {
-//         loader.removeClass('flex-block');
-//         successMessage.fadeIn(200);
-//         button.removeClass("disable");
-//         $('#call-me-form input').val('');
-
-//     }, 5000);
-
-//     try {
-//         $.ajax({
-//             url: url,
-//             type: "POST",
-//             contentType: "application/json; charset=UTF-8",
-//             data: JSON.stringify(obj),
-//             success: function(responseData) {
-//                 loader.removeClass('flex-block');
-//                 successMessage.fadeIn(200);
-//                 $('#call-me-form input').val('');
-//             },
-//             error: function(xhr, status, error) {
-//                 loader.removeClass('flex-block');
-//                 failureMessage.fadeIn(200);
-//             },
-//             complete: function() {
-//                 button.removeClass("disable");
-
-//                 window.setTimeout(() => {
-//                     successMessage.fadeOut(400);
-//                     failureMessage.fadeOut(400);
-//                 }, 5000);
-//             }
-//         });
-//     } catch (e) {
-//         console.log(e);
-
-//         loader.removeClass('flex-block');
-//         successMessage.fadeOut(400);
-//         failureMessage.fadeOut(400);
-//         button.removeClass("disable");
-//     }
-// }
-
-// function setFormInputEventListeners() {
-//     $('form #name').on('input', function(event) {
-//         event.preventDefault();
-
-//         const inputText = event.target.value;
-//         const nonNumericAndNonSymbolText = inputText.replace(/[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g, '');
-
-//         if (nonNumericAndNonSymbolText !== inputText) {
-//             event.target.value = nonNumericAndNonSymbolText;
-//         }
-
-//         const value = $(this).val();
-
-//         if (value.length > 0) {
-//             $(this).addClass('has-value');
-//             $(this).parent().removeClass('invalid');
-//         } else {
-//             $(this).removeClass('has-value');
-//             $(this).parent().addClass('invalid');
-//         }
-//     });
-
-//     $('#phone-input').focusout(function(e) {
-//         e.preventDefault();
-
-//         const value = $(this).val()
-//         if (value.length != 19 || !phoneRegex.test(value)) {
-//             $(this).parent().addClass('invalid');
-//         } else {
-//             $(this).parent().removeClass('invalid');
-//         }
-//     });
-
-//     $('#offert').change(function() {
-//         const submitBtn = $("#submit-call");
-
-//         if ($(this).is(':checked')) {
-//             submitBtn.removeClass('disable');
-//         } else {
-//             submitBtn.addClass('disable');
-
-//         }
-//     });
-// }
+        button.removeClass("disabled loading");
+        successMessage.fadeOut(500);
+        failureMessage.fadeOut(500);
+    }
+}
 
 // function isDataValid(formDatas) {
 //     const { name = undefined, phone = undefined } = formDatas;
@@ -603,7 +604,6 @@ function initFormValidation() {
 //         $('#name-input').parent().addClass('invalid');
 //         return false;
 //     }
-
 
 //     if (!phone || !phone.length || !phoneRegex.test(phone)) {
 //         $('#phone-input').parent().addClass('invalid');

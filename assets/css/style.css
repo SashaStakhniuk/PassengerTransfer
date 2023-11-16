@@ -1515,7 +1515,10 @@ font-family: 'Roboto', sans-serif;
         12. FAQ
 --------------------------------------*/
     
-    #faq {}
+    #faq a:hover {
+        color: var(--main-red);
+        text-decoration: underline;
+    }
     
     #faq .section-header {
         text-align: left;
@@ -1526,6 +1529,10 @@ font-family: 'Roboto', sans-serif;
         color: #454545;
         font-size: 16px;
         text-align: justify;
+    }
+    
+    .faq-list p.no-justify {
+        text-align: left;
     }
     
     .faq-list .faq-list-item:after {
@@ -1992,13 +1999,6 @@ instructions
     data-form
 ===============================*/
     
-    .disabled {
-        user-select: none;
-        pointer-events: none;
-        background-color: var(--gray) !important;
-        color: lightgray !important;
-    }
-    
     #make-order-form,
     #make-order-form-modal {
         display: flex;
@@ -2043,7 +2043,7 @@ instructions
         background-color: transparent;
         color: var(--text-gray);
         border: 1px solid hsla(0, 0%, 100%, .23);
-        border-radius: 33px;
+        border-radius: 15px;
         display: -ms-flexbox;
         display: flex;
         font-size: 15px;
@@ -2073,11 +2073,28 @@ instructions
         width: 60px;
     }
     
-    .form-box .data-box.error input {
+    .form-box .data-box textarea {
+        background-color: transparent;
+        color: var(--text-gray);
+        border: 1px solid hsla(0, 0%, 100%, .23);
+        border-radius: 30px;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 300;
+        padding: 20px;
+        width: 100%;
+        resize: none;
+    }
+    
+    .form-box .data-box.error input,
+    .form-box .data-box.error textarea {
         border-color: var(--main-red);
     }
     
-    .form-box .data-box.error input+label {
+    .form-box .data-box.error input+label,
+    .form-box .data-box.error textarea+label {
         color: var(--main-red);
     }
     
@@ -2091,32 +2108,61 @@ instructions
         display: block;
     }
     
+    .form-box .messages-block #success-message,
+    .form-box .messages-block #failure-message {
+        display: none;
+    }
+    
     .order-btn {
-        background: var(--main-red);
-        color: #EAE4DA;
-        border: none;
-        border-radius: 15px;
+        position: relative;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin-top: 10px;
         width: 300px;
         height: 40px;
-        margin-top: 10px;
+        border: none;
+        border-radius: 15px;
+        background: var(--main-red);
+        color: #EAE4DA;
         font-weight: 700;
         letter-spacing: 1.2pt;
         font-size: larger;
         cursor: pointer;
-        position: relative;
-        top: 0;
         transition: all 0.4s ease;
+    }
+    
+    .disabled {
+        user-select: none;
+        pointer-events: none;
+        background-color: var(--gray) !important;
+        color: lightgray !important;
     }
     
     .order-btn.disabled {
         border-color: #333;
     }
     
-    .order-btn.disabled:hover {
-        border-color: #333;
+    .order-btn span {
+        display: block;
     }
     
-    .order-btn:hover {
+    .order-btn.loading span {
+        display: none;
+    }
+    
+    .order-btn i {
+        display: none;
+    }
+    
+    .order-btn.loading i {
+        display: block;
+    }
+    
+    .order-btn:hover:not(.disabled) {
         outline: 1px solid var(--main-red);
         border: 1px solid var(--main-red);
         background-color: transparent;
@@ -2230,7 +2276,30 @@ instructions
         animation: btn-anim1 1s linear infinite;
     }
     
-    .white-background input {}
+    .loader {
+        width: 20px;
+        height: 20px;
+        border: 3px dashed var(--main-dark);
+        border-radius: 50%;
+        display: flex;
+        position: relative;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+    
+    .loader::after {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 3px solid;
+        border-color: var(--main-dark) transparent;
+    }
     
     .center {
         width: 100%;
@@ -2250,9 +2319,8 @@ instructions
         text-align: center;
     }
     
-    #make-order-form-modal .submit-position {
-        align-items: center;
-        justify-content: center;
+    .column {
+        flex-direction: column;
     }
     
     @keyframes btn-anim1 {
@@ -2262,6 +2330,15 @@ instructions
         50%,
         100% {
             left: 100%;
+        }
+    }
+    
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
         }
     }
     
@@ -2320,13 +2397,12 @@ instructions
     /*===============================
     contacts
 ===============================*/
-    
-    #contacts {
+    /* #contacts {
         display: flex;
         flex-direction: column;
         width: 100%;
         padding: 0;
-    }
+    } */
     
     .contacts-block {
         display: flex;
@@ -2406,12 +2482,6 @@ instructions
         display: flex;
         flex-direction: column;
         width: 100%;
-        padding: 20px;
-        box-sizing: border-box;
-    }
-    
-    .column {
-        flex: 1;
         padding: 20px;
         box-sizing: border-box;
     }
