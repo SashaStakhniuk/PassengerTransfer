@@ -1777,6 +1777,11 @@ font-family: 'Roboto', sans-serif;
         background: -webkit-linear-gradient(top, #3b5998, #2b4170);
         color: #fff;
     }
+    
+    .footer-social .whatsapp-link a {
+        background-color: #25D366;
+        color: #fff;
+    }
     /*===============================
     Modal
 ===============================*/
@@ -2120,6 +2125,10 @@ instructions
         display: block;
     }
     
+    .form-box .messages-block {
+        margin-bottom: 15px;
+    }
+    
     .form-box .messages-block #success-message,
     .form-box .messages-block #failure-message {
         display: none;
@@ -2195,7 +2204,7 @@ instructions
         font-size: 12px;
     }
     
-    .public-offert-link {
+    a.public-offert-link {
         color: var(--main-red);
         font-size: 12px;
     }
@@ -2673,5 +2682,56 @@ instructions
         50% {
             box-shadow: 0 0 30px rgba(52, 152, 219, 0.7);
         }
+    }
+    /*Privacy policy*/
+    
+    #privacy-policy {
+        padding: 0;
+        color: var(--main-dark);
+        text-align: justify;
+    }
+    
+    #privacy-policy h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    #privacy-policy p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    #privacy-policy ol {
+        list-style: none;
+        margin-left: 10px;
+        margin-bottom: 20px;
+    }
+    
+    #privacy-policy li {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+    
+    #privacy-policy h4 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        transition: color 0.3s ease-in-out;
+    }
+    
+    #privacy-policy ol {
+        counter-reset: section;
+    }
+    
+    #privacy-policy li:before {
+        counter-increment: section;
+        content: counters(section, ".") " ";
+        font-weight: bold;
+    }
+    
+    #privacy-policy .container>ol>li::before {
+        visibility: hidden;
     }
     /*========================Thank you=================
