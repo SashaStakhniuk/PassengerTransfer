@@ -600,6 +600,65 @@ font-family: 'Roboto', sans-serif;
     #routes .section-header h2 {
         color: var(--text-gray);
     }
+    
+    .routes-swiper {
+        overflow: hidden;
+    }
+    
+    .routes-swiper picture {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #routes .routes-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: start;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    
+    #routes .routes-buttons .route-btn {
+        position: relative;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 220px;
+        height: 40px;
+        border: none;
+        border-radius: 15px;
+        outline: 1px solid var(--main-red);
+        border: 1px solid var(--main-red);
+        background-color: transparent;
+        color: var(--main-red);
+        cursor: pointer;
+        transition: all 0.4s ease;
+        font-size: 20px;
+    }
+    
+    #routes .routes-buttons .route-btn:hover {
+        background: var(--main-red);
+        color: #EAE4DA;
+    }
+    
+    #routes .routes-buttons .route-btn.active {
+        background: var(--main-red);
+        color: #EAE4DA;
+        transition: all 0.1s ease;
+    }
+    
+    #routes .routes-swiper-text {
+        margin-top: 20px;
+        max-width: 750px;
+    }
+    
+    #routes .routes-swiper-text p {
+        font-size: 16px;
+    }
     /*-------------------------------------
         6. Routes
 --------------------------------------*/
@@ -845,7 +904,7 @@ font-family: 'Roboto', sans-serif;
     .countries-swiper {
         width: 100%;
         position: relative;
-        padding-bottom: 30px;
+        /* padding-bottom: 30px; */
     }
     /*-------------------------------------
         8. countries
@@ -2262,7 +2321,8 @@ instructions
     }
     
     .form-box .data-box input[name="date_submit"]+label,
-    .form-box .data-box input[name="phone"]+label,
+    .form-box .data-box input[name="phone"]:focus~label,
+    .form-box .data-box input[name="phone"]:valid~label,
     .form-box .data-box input[type="text"]:focus~label,
     .form-box .data-box input[type="text"]:valid~label {
         top: -9px;

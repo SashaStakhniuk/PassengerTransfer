@@ -1,10 +1,11 @@
 const today = new Date();
 const outputDateFormat = 'yyyy-MM-dd';
-const postalCodeRegex = /^[a-zA-Z\s]*[0-9\s-]+[a-zA-Z\s]*$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 const nameRegex = /^[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}\s[a-zA-Zа-яА-ЯґҐєЄіІїЇ]{2,}$/;
-const phoneNumberRegex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+const postalCodeRegex = /^[a-zA-Z\s]*[0-9\s-]+[a-zA-Z\s]*$/;
+const phoneNumberRegex = /^[0-9()+\-\s]*$/;
 //const phoneNumberRegex = /^\+38 \(0[0-9]{2}\) \d{2}-\d{2}-\d{3}$/;
+
 const mainForm = $('#make-order-form');
 const tg = {
     token: "6976184116:AAH1cIq40dzwXLWwVYj4NRX0zp927B4dKag",
@@ -82,7 +83,6 @@ $(document).ready(function() {
 $(document).ready(function() {
     initDatas();
     initEventListeners();
-    initFormValidation();
 });
 
 function getFormInputs(form = mainForm) {
@@ -144,8 +144,6 @@ function initDatas() {
             dateContainer.attr("max", maxDateString);
         }
     });
-
-    formInputs.phone.inputmask("+38 (099) 99-99-999");
 }
 
 function resetFormInputs(form) {
@@ -241,8 +239,40 @@ function initEventListeners() {
     });
 
     /*_____________________________SWIPERS______________________________________________*/
+    const routesSwiper = new Swiper('.routes-swiper', {
+        direction: 'horizontal',
+        slidesPerView: 'auto',
+        slidesPerGroup: 1,
+        loop: false,
+        centeredSlides: true,
+        simulateTouch: true,
+        spaceBetween: 10,
+        grabCursor: true,
+        breakpoints: {
+            0: {
+                autoHeight: true,
+            },
+            // 768: {
+            //     autoHeight: false,
+            // },
+        },
+    });
 
-    const vehiclesSeiper = new Swiper('.vehicles-swiper', {
+    routesSwiper.on('slideChange', function() {
+        $('#routes .routes-buttons .route-btn').removeClass('active');
+
+        $('#routes .routes-buttons .route-btn').eq(routesSwiper.realIndex).addClass('active');
+    });
+
+    $('#routes .routes-buttons .route-btn').each(function(index, btn) {
+        $(btn).on('click', function() {
+            $('#routes .routes-buttons .route-btn').removeClass('active');
+            $(this).addClass('active');
+            routesSwiper.slideTo(index);
+        });
+    });
+
+    const vehiclesSwiper = new Swiper('.vehicles-swiper', {
         direction: 'horizontal',
         loop: true,
         slidesPerView: 3,
@@ -277,7 +307,7 @@ function initEventListeners() {
         },
     });
 
-    const swiper = new Swiper('.reviews-swiper', {
+    const reviewsSwiper = new Swiper('.reviews-swiper', {
         direction: 'horizontal',
         loop: true,
         slidesPerView: 1,
@@ -394,6 +424,15 @@ function initEventListeners() {
         }
     });
 
+    $("form input[type='tel']").on("input", function(event) {
+        const inputText = event.target.value;
+        const nonLettersText = inputText.replace(/[a-zA-Zа-яА-ЯґҐєЄіІїЇ!@#$%^&*_\s\\=\[\]{};':"\\|,.<>\/?]/g, '');
+
+        if (nonLettersText !== inputText) {
+            event.target.value = nonLettersText;
+        }
+    });
+
     // $('form input[name="phone"]').on('focusout', function(e) {
     //     e.preventDefault();
 
@@ -427,6 +466,10 @@ function initEventListeners() {
 
         for (const key in formData) {
             if (formData.hasOwnProperty(key)) {
+                if (!formData[key].attr('required')) {
+                    debugger
+                    continue;
+                }
                 const value = formData[key].val().trim();
 
                 if (!value) {
@@ -552,23 +595,6 @@ function showStep(step) {
     $('[data-step="' + step + '"]').addClass('active-step');
 }
 
-function initFormValidation() {
-    // $("form input[type='tel']").on("keydown", (e) => {
-    //     if (isNaN(parseInt(String.fromCharCode(e.which)))) {
-    //         e.preventDefault();
-    //         return;
-    //     }
-    //     // let phoneNumber = e.target.value;
-    //     // let phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
-
-    //     // if (phoneRegex.test(phoneNumber)) {
-    //     //     //alert('Valid phone number!');
-    //     // } else {
-    //     //     //alert('Invalid phone number! Please enter a valid international phone number.');
-    //     // }
-    // });
-}
-
 async function sendTelegramMessage(form, text) {
     if (!form.length || !text) {
         return;
@@ -620,22 +646,6 @@ async function sendTelegramMessage(form, text) {
         failureMessage.fadeOut(500);
     }
 }
-
-// function isDataValid(formDatas) {
-//     const { name = undefined, phone = undefined } = formDatas;
-
-//     if (!name || name.length < 3 || !letterRegex.test(name)) {
-//         $('#name-input').parent().addClass('invalid');
-//         return false;
-//     }
-
-//     if (!phone || !phone.length || !phoneRegex.test(phone)) {
-//         $('#phone-input').parent().addClass('invalid');
-//         return false;
-//     }
-
-//     return true;
-// }
 
 function parseStringToDate(dateString, intputDateFormat = "yyyy-MM-dd HH:mm") {
     const formatParts = intputDateFormat.match(/[a-zA-Z0-9]+/g);

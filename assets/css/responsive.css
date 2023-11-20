@@ -304,6 +304,13 @@
     .explore-content .flex-blocks-container .block__item {
         width: 100%;
     }
+    #routes .routes-buttons .route-btn {
+        width: 50%;
+        font-size: 18px;
+    }
+    .routes-swiper-text {
+        text-align: justify;
+    }
 }
 
 

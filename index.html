@@ -337,7 +337,7 @@
                                             <span class="explore-price-box">
                                                 Орієнтовна ціна         
                                            </span>
-                                            <span class="explore-price">Від 80€</span>
+                                            <span class="explore-price">45€-220€</span>
                                             <p>Виїзд кожного дня</p>
                                         </p>
                                     </div>
@@ -445,7 +445,7 @@
                                         </div> -->
                                     </div>
                                     <div class="single-explore-txt bg-theme-3">
-                                        <h2><a href="#">Німечина</a></h2>
+                                        <h2><a href="#">Німеччина</a></h2>
                                         <p class="explore-rating-price">
                                             <span class="explore-rating">5.0</span>
                                             <a href="#"> 10 відгуків</a>
@@ -659,7 +659,7 @@
                             <div class="block__item-narrow">
                                 <div class="single-explore-item">
                                     <div class="single-explore-img">
-                                        <img decoding="async" src="./img/Countries/finland.jpg" alt="explore image">
+                                        <img decoding="async" src="./img/Countries/fineland.jpeg" alt="explore image">
                                         <!-- <div class="single-explore-img-info">
                                             <button onclick="window.location.href='#'">best rated</button>
                                             <div class="single-explore-image-icon-box">
@@ -737,11 +737,39 @@
             <div class="section-header">
                 <h2>Маршрути</h2>
             </div>
-            <picture>
-                <source media="(min-width: 768px)" srcset="./assets/images/routes/ukraine-route-desktop-new.svg">
-                <source media="(max-width: 767px)" srcset="./assets/images/routes/ukraine-route-mobile-new.svg">
-                <img decoding="async" src="./assets/images/routes/ukraine-route.svg" alt="slide">
-            </picture>
+            <div class="routes-buttons">
+                <div class="route-btn active" data-id="ukraine-europe">
+                    Україна-Європа
+                </div>
+                <div class="route-btn" data-id="europe-ukraine">
+                    Європа-Україна
+                </div>
+            </div>
+            <div class="routes-swiper">
+                <div class="swiper-wrapper">
+                    <div id="ukraine-europe" class="swiper-slide">
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="./assets/images/routes/ukraine-route-desktop-new.svg">
+                            <source media="(max-width: 767px)" srcset="./assets/images/routes/ukraine-route-mobile-new.svg">
+                            <img decoding="async" src="./assets/images/routes/ukraine-route.svg" alt="slide">
+                        </picture>
+                        <div class="routes-swiper-text">
+                            <p>В Україні заберемо з визначеного населеного пункту (в більшості випадків з обласних центрів. Деталі узгоджуються з менеджерами), та доставимо за адресою призначення в Європі.</p>
+                        </div>
+                    </div>
+
+                    <div id="europe-ukraine" class="swiper-slide">
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="./assets/images/routes/europe-ukraine-route-desktop.svg">
+                            <source media="(max-width: 767px)" srcset="./assets/images/routes/europe-ukraine-route-mobile.svg">
+                            <img decoding="async" src="./assets/images/routes/ukraine-route.svg" alt="slide">
+                        </picture>
+                        <div class="routes-swiper-text">
+                            <p>З Європи заберемо за адресою відправлення, та доставимо до пункту призначення в Україні.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1413,9 +1441,9 @@
                                 <p class="error-message">Допустима к-сть слів: 2. Мінімальна к-сть букв в імені та прізвищі: 2. Заборонені символи та цифри</p>
                             </div>
                             <div class="data-box">
-                                <input type="text" id="phone" class="input-icon phone" name="phone" minlength="19" maxlength="19" placeholder="+38 (0__) __-__-___" required="true">
+                                <input type="tel" id="phone" class="input-icon phone" name="phone" minlength="10" maxlength="15" required="true">
                                 <label>Номер телефону</label>
-                                <p class="error-message">Некоректний формат. Введені цифри не є українським номером телефону</p>
+                                <p class="error-message">Некоректний формат. Введені цифри не є номером телефону</p>
                             </div>
                         </div>
                         <div id="amount-of-peoples-block" class="form-row">
@@ -1458,7 +1486,7 @@
                         </div>
                         <div class="form-row">
                             <div class="data-box">
-                                <textarea name="additionalInfo" class="input__field" cols="30" rows="3" maxlength="300" placeholder="Додаткова інформація" aria-invalid="false" autocomplete="false" required="false"></textarea>
+                                <textarea name="additionalInfo" class="input__field" maxlength="300" placeholder="Додаткова інформація" aria-invalid="false" autocomplete="false"></textarea>
                                 <p class="error-message">Максимальна к-сть символів: 300</p>
                             </div>
                         </div>
