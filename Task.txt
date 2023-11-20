@@ -1,3 +1,6 @@
+http://153.92.221.205/sania/
+pastrans-eu.com
+
 В мене є компанія, що займається міжнародними пасажирськими перевезеннями.
 Зробити систему яка:
 1) дозволить пасажиру обрати місце перебування, місце призначення. (з можливістю вибору проміжної зупинки). 
@@ -24,6 +27,8 @@ https://www.free-css.com/free-css-templates/page296/listrace
 https://globus.pl.u	a/?gclid=Cj0KCQjw7JOpBhCfARIsAL3bobfaYv2-8VaNuDU2EEdzIFHcujx8ekCW7vFmb69bDoniVURPSF2nh3oaAk3cEALw_wcB
 https://developers.google.com/maps/documentation/javascript/place-autocomplete?hl=ru#javascript
 https://starbus.net.ua/
+
+https://www.instagram.com/perevezenya8/	
 
 Країни
 
@@ -82,5 +87,7 @@ https://starbus.net.ua/
 
 Бронювання суто по телефону. Надання інформації на сайті для зв'язку з менеджером і уточнення інформації стосовно поїздки.
 
-https://www.instagram.com/perevezenya8/	
-
+Затрати:
+- 21$ домен
+- 2$ картка
+- 2 місяці роботи (по 1-2 години в день);

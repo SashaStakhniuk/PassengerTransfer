@@ -154,6 +154,9 @@
         margin-right: 23px;
         margin-left: 0;
     }
+    #routes picture img {
+        padding: 20px;
+    }
     .statistics {
         padding: 60px 0;
     }
@@ -211,7 +214,16 @@
 
 @media screen and (max-width: 640px) {
     .explore-rating-price a {
-        margin-top: 10px;
+        margin: 10px 70px 0px 0px;
+    }
+    .explore-rating-price {
+        margin: 5px 0px;
+    }
+    .single-explore-img img {
+        height: 140px;
+    }
+    .single-explore-txt>h2 a {
+        font-size: 20px;
     }
 }
 
@@ -224,11 +236,13 @@
     }
     .single-explore-item {
         width: 300px;
-        margin: 0px;
     }
-    .list-topics-content .flex-blocks-container {
+    /* .list-topics-content .flex-blocks-container {
         flex-wrap: nowrap;
         justify-content: initial;
+    } */
+    .single-explore-txt {
+        padding: 10px 15px 25px 15px;
     }
     #list-topics .list-topics-content ul {
         display: grid;
@@ -260,12 +274,8 @@
         overflow-y: auto;
         gap: 10px;
     } */
-    .explore-content .flex-blocks-container .block__item {
-        width: 100%;
-    }
     .explore-content .flex-blocks-container .block__item .block__item-narrow {
         display: flex;
-        flex-direction: row;
         justify-content: center;
     }
     .booking__container {
@@ -290,6 +300,9 @@
     }
     .subscribe-title h2 {
         font-size: 18px;
+    }
+    .explore-content .flex-blocks-container .block__item {
+        width: 100%;
     }
 }
 

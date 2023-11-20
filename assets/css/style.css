@@ -752,7 +752,6 @@ font-family: 'Roboto', sans-serif;
     .explore-rating-price a {
         font-size: 12px;
         color: #777f85;
-        text-transform: capitalize;
         font-weight: 400;
         margin: 15px 0 20px;
     }
@@ -782,6 +781,11 @@ font-family: 'Roboto', sans-serif;
         padding: 0 10px;
         margin: 0 8px;
         border-left: 1px solid #dde0e4;
+    }
+    
+    .explore-description {
+        display: flex;
+        flex-wrap: wrap;
     }
     
     .explore-person {
@@ -1529,6 +1533,10 @@ font-family: 'Roboto', sans-serif;
         color: #454545;
         font-size: 16px;
         text-align: justify;
+    }
+    
+    .faq-list p.atention {
+        color: var(--main-red);
     }
     
     .faq-list p.no-justify {

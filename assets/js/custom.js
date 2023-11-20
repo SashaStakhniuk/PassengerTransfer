@@ -240,6 +240,8 @@ function initEventListeners() {
         });
     });
 
+    /*_____________________________SWIPERS______________________________________________*/
+
     const vehiclesSeiper = new Swiper('.vehicles-swiper', {
         direction: 'horizontal',
         loop: true,
@@ -308,40 +310,43 @@ function initEventListeners() {
         },
     });
 
-    let countriesSwiper;
+    // let countriesSwiper;
 
-    function toogleCountriesSwiper() {
-        if ($(window).width() <= 580) {
-            countriesSwiper = new Swiper('.countries-swiper', {
-                direction: 'horizontal',
-                loop: false,
-                slidesPerView: 1,
-                autoHeight: true,
-                simulateTouch: true,
-                spaceBetween: 10,
-                centeredSlides: true,
-                grabCursor: true,
-                autoplay: {
-                    delay: 1000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: true
-                },
-                pagination: {
-                    el: '.countries-swiper .swiper-pagination',
-                },
-            });
-        } else {
-            if (countriesSwiper) {
-                countriesSwiper.destroy();
-            }
-        }
-    }
+    // function toogleCountriesSwiper() {
+    //     if ($(window).width() <= 580) {
+    //         countriesSwiper = new Swiper('.countries-swiper', {
+    //             direction: 'horizontal',
+    //             loop: false,
+    //             slidesPerView: 1,
+    //             autoHeight: true,
+    //             simulateTouch: true,
+    //             spaceBetween: 10,
+    //             centeredSlides: true,
+    //             grabCursor: true,
+    //             autoplay: {
+    //                 delay: 1000,
+    //                 stopOnLastSlide: false,
+    //                 disableOnInteraction: true
+    //             },
+    //             pagination: {
+    //                 el: '.countries-swiper .swiper-pagination',
+    //             },
+    //         });
+    //     } else {
+    //         if (countriesSwiper) {
+    //             countriesSwiper.destroy();
+    //         }
+    //     }
+    // }
 
-    toogleCountriesSwiper();
+    // toogleCountriesSwiper();
 
-    $(window).resize(function() {
-        toogleCountriesSwiper()
-    });
+    // $(window).resize(function() {
+    //     toogleCountriesSwiper()
+    // });
+
+    /*_____________________________SWIPERS______________________________________________*/
+
 
     let currentStep = 1;
     showStep(currentStep);
