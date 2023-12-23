@@ -1,0 +1,18 @@
+https://population-hub.com/ua/cz/list-of-cities-in-czech-republic-by-population.html
+table.table tbody tr td:nth-child(2) a
+
+Польща:
+https://www.wikiwand.com/uk/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BC%D1%96%D1%81%D1%82_%D0%9F%D0%BE%D0%BB%D1%8C%D1%89%D1%96_%D0%B7%D0%B0_%D0%BD%D0%B0%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D1%8F%D0%BC
+table.wikitable tbody tr td:nth-child(2) a
+
+Литва:
+https://population-hub.com/ua/lt/list-of-cities-in-lithuania-by-population.html
+table.table tbody tr td:nth-child(2) a
+
+Латвія:
+https://population-hub.com/ua/lv/list-of-cities-in-latvia-by-population.html
+table.table tbody tr td:nth-child(2) a
+
+Естонія:
+https://population-hub.com/ua/ee/list-of-cities-in-estonia-by-population.html
+table.table tbody tr td:nth-child(2) a

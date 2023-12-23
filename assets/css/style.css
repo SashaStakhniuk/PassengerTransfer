@@ -776,7 +776,7 @@ font-family: 'Roboto', sans-serif;
     }
     
     .single-explore-txt p {
-        font-size: 12px;
+        font-size: 14px;
     }
     
     .single-explore-txt>h2 {
@@ -1107,12 +1107,15 @@ font-family: 'Roboto', sans-serif;
     
     .statistics {
         position: relative;
+        display: -ms-flexbox;
+        display: -webkit-box;
         display: flex;
         align-items: center;
         background: url(../../img/city.jpg)no-repeat fixed;
-        background-position: center;
         background-size: cover;
         padding: 127px 0 120px;
+        background-position: 50%;
+        background-repeat: no-repeat;
     }
     
     .statistics:before {
